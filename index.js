@@ -1,4 +1,4 @@
-alert("Todos los dias estamos rodeados de comida, desde que nos levantamos hasta que nos vamos a la cama, las reuniones sociales son entorno a ello y aun asi la mayoria de las cosas con referente a la comida, la nutricion las desconocemos, siendo un factor tan importante en nuestra salud tanto fisica como psicologica.\nEntonces, tu, cuanto sabes sobre nutricion?")
+alert("cuanto sabes sobre nutricion?")
 
 let correctas=0
 let option=""
@@ -13,10 +13,14 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="b"){
+        if(option=="b"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
+        
     }
 }
 
@@ -31,10 +35,14 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="a"){
+        if(option=="a"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
+
     }
 }
 
@@ -49,10 +57,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="c"){
+        if(option=="c"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -67,10 +78,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="b"){
+        if(option=="b"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -85,10 +99,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="a"){
+        if(option=="a"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -104,10 +121,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="b"){
+        if(option=="b"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -123,10 +143,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="c"){
+        if(option=="c"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -141,10 +164,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="c"){
+        if(option=="c"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -159,10 +185,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="b"){
+        if(option=="b"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
@@ -178,10 +207,13 @@ option=option.toLowerCase()
         alert("ingresa una opcion valida")
     }
     else{
-        if(option="a"){
+        if(option=="a"){
             correctas+=1
+            alert("la respuesta es correcta")
         }
-        else{correctas+=0}
+        else{
+            alert("respuesta incorrecta")
+        }
     }
 }
 
