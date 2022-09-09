@@ -16,7 +16,7 @@ let user3 = new user("maximo", "maximi", "1592");
 
 let user4 = new user("vale", "valentina", "1672");
 
-usuarios.push(user1, user2);
+usuarios.push(user1, user2, user3, user4);
 
 const newUser = () => {
   let name = prompt("ingrese su nombre".toLowerCase());
