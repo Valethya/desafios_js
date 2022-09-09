@@ -1,0 +1,101 @@
+body{
+    background: $secondary-color-light;
+}
+.content_header{
+    height: 20vh;
+    background-image: url(../img/citrics.jpg);
+    background-size: cover;
+}
+.img-mirror{
+    transform: scaleX(-1);
+}
+img{
+    object-fit: cover;
+    object-position:center;
+    min-height: 230px;
+} 
+.justify-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.flex{
+    display: flex;
+}
+
+.main{
+    background-color: white;
+    margin-top: 3vh;
+}
+@media #{$medium-and-up} {
+    .main {
+        margin-top: 6vh;
+    }
+    }
+@media #{$large-and-up} {
+    .main {
+        margin-top: 8vh;
+    }
+}
+
+// estilos index
+.wrap-promise{
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+}
+.servicios{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.arrow{
+    height: 50%;
+}
+
+
+.btn-card{
+    position: absolute;
+    right: 24px;
+    bottom: -20px; 
+}
+.info{
+    margin-top: 2em;
+}
+
+.hover-p{
+    p{
+      transition: 1s;
+    }
+    &:hover p{
+      color: #000 !important ; 
+      transition: 2s;
+    }
+  }
+
+ ///estilos login 
+.bg-login{
+    background: url(../img/citrics.jpg);
+    background-size: cover;
+    background-position: bottom;
+}
+.cont-login{
+margin-top: 3em;
+margin-bottom: 3em;
+width: 40%;
+padding: 2em;
+.span-pass{
+    font-size: 75%;
+    margin-top: 2em;
+    display: flex;
+    align-items: center;
+    &:hover i{
+        color:$secondary-color-dark;
+    }
+}
+.btn-form{
+    width: 100%;
+}
+}
