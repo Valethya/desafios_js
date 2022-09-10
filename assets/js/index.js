@@ -83,21 +83,39 @@ login();
 const findFriends = () => {
   let nameFriend = prompt("como se llama tu amigo?");
   let friends = usuarios.filter((user) => user.name.match(nameFriend));
-  let friendsString = [];
 
-  for (const friend of friends) {
-    friendsString.push(friend.name);
+  let nameObjetos = [];
+
+  nameObjetos = friends.map(function (elem) {
+    let returnObjeto = { name: elem.name };
+    return returnObjeto;
+  });
+
+  console.log(nameObjetos);
+
+  let nameUser = [];
+
+  nameUser = nameObjetos.map(function (elem) {
+    let value = Object.values(elem);
+    return value;
+  });
+
+  let userName = [];
+  for (const user of nameUser) {
+    userName.push("\n" + user);
   }
 
-  if (friendsString.toString() === nameFriend) {
-    confirm(`tu amigo ${friendsString.toString()} se encuentra en este lugar`);
+  userName = userName.join("");
+
+  if (userName.includes("\n" + nameFriend)) {
+    confirm(`hemos encontrado estas coincidencias: ${userName.toString()}`);
   } else {
     confirm(
-      `lo sentimos mucho pero tu amigo ${friendsString.toString()} no se encuentre`
+      `lo sentimos mucho pero tu amigo ${nameFriend.toString()} no se encuentre`
     );
   }
-  console.log(friendsString.toString());
-  console.log(friends);
+  console.log(nameFriend);
+  console.log(userName);
 };
 
 findFriends();
