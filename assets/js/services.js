@@ -123,26 +123,6 @@ const loadService = (services) => {
 };
 loadService(services);
 
-debugger;
-// let findService = () => {
-//   let serviceType = prompt(
-//     "que servicio buscas? \n1-.nutricional.\n2-.asesoria.\n3-.cursos.\n4-.clases.\n 5-.Todas."
-//   ).toLowerCase();
-//   debugger;
-
-//   if (serviceType == "todas") {
-//     loadService(services);
-//   } else {
-//     let foundService = services.filter(
-//       (service) => service.type === serviceType
-//     );
-//     loadService(foundService);
-//   }
-// };
-// debugger;
-
-// window.addEventListener("load", findService);
-
 const selectOption = document.querySelector(".typeService");
 
 selectOption.addEventListener("change", () => {
@@ -157,49 +137,3 @@ selectOption.addEventListener("change", () => {
   }
 });
 debugger;
-
-//ordenar productos
-// debugger;
-// let btnHigher = document.querySelector("#mayorMenor");
-// let btnLower = document.querySelector("#menorMayor");
-
-// const higherPrice = (services) => {
-//   let serviceHigher = services.sort((a, b) => {
-//     if (a.price > b.price) {
-//       return -1;
-//     }
-//     if (a.price < b.price) {
-//       return 1;
-//     }
-//     return 0;
-//   });
-//   loadService(serviceHigher);
-// };
-
-// const lowerPrice = (services) => {
-//   let servicesLower = services.sort((a, b) => {
-//     if (a.price > b.price) {
-//       return 1;
-//     }
-//     if (a.price < b.price) {
-//       return -1;
-//     }
-//     return 0;
-//   });
-//   loadService(servicesLower);
-// };
-
-// debugger;
-// // btnHigher.addEventListener("click", higherPrice(services), false);
-// // btnLower.addEventListener("click", lowerPrice(services), false);
-// if (Option.value === "menorMayor") {
-//   if (a.price < b.price) return -1;
-//   if (a.price > b.price) return 1;
-//   return 0;
-// }
-
-// if (Option.value === "mayorMenor") {
-//   if (a.price > b.price) return -1;
-//   if (a.price < b.price) return 1;
-//   return 0;
-// }
