@@ -1,5 +1,15 @@
 {
+  "author": "Nombre e Email",
+  "description": "Descripcion de mi Package",
+  "license": "MIT",
+  "name": "nombre-de-mi-package",
+  "scripts": {
+    "watch:css": "nodemon -e scss -x \"npm run build:css\"",
+    "build:css": "node-sass  --output-path compressed assets/scss/styles.scss assets/css/main.css"
+  },
+  "version": "1.0.0",
   "devDependencies": {
-    "prettier": "^2.7.1"
+    "node-sass": "^7.0.1",
+    "nodemon": "^2.0.4"
   }
 }

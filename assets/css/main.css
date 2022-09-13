@@ -6460,9 +6460,11 @@ img {
 .bg-login {
   background: url(../img/citrics.jpg);
   background-size: cover;
-  background-position: bottom; }
+  background-position: bottom;
+  min-height: 100vh; }
 
 .cont-login {
+  display: none;
   margin-top: 3em;
   margin-bottom: 3em;
   width: 40%;
@@ -6476,3 +6478,7 @@ img {
       color: #ff7145; }
   .cont-login .btn-form {
     width: 100%; }
+
+.holdFriend {
+  min-height: 75vh;
+  transition: 3s; }

@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="assets/css/main.css"
+      media="screen,projection"
+    />
+  </head>
+
+  <body class="bg-login justify-center">
+    <nav>
+      <div class="nav-wrapper">
+        <a href="#" data-target="mobile-demo" class="sidenav-trigger"
+          ><i class="material-icons">menu</i></a
+        >
+        <ul class="right hide-on-med-and-down">
+          <li><a href="sass.html">Sass</a></li>
+          <li><a href="badges.html">Components</a></li>
+          <li><a href="collapsible.html">Javascript</a></li>
+          <!-- dropdown trigger -->
+          <li>
+            <a class="dropdown-trigger" href="#" data-target="dropdown-menu">
+              Login<i class="material-icons right">arrow_drop_down</i></a
+            >
+          </li>
+        </ul>
+        <!-- dropdown structure-->
+        <ul id="dropdown-menu" class="dropdown-content">
+          <li><a href="#">login</a></li>
+          <li><a href="#">sign</a></li>
+        </ul>
+      </div>
+    </nav>
+    <ul class="sidenav" id="mobile-demo">
+      <li><a href="sass.html">Sass</a></li>
+      <li><a href="badges.html">Components</a></li>
+      <li><a href="collapsible.html">Javascript</a></li>
+      <li><a href="mobile.html">Mobile</a></li>
+    </ul>
+
+    <div class="card-sign grey z-depth-5 lighten-5 cont-login">
+      <div class="row justify-center">
+        <i class="material-icons large">account_circle</i>
+      </div>
+      <div class="row justify-center">
+        <form name="form-sign" class="col s10">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="first_name" type="text" class="validate" />
+              <label for="first_name">Tu Nombre</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="email" type="email" class="validate" />
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password" type="password" class="validate" />
+              <label for="password" class="">Contraseña</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="password-confirm" type="password" class="validate" />
+              <label for="password-confirm" class=""
+                >Confirmar contraseña</label
+              >
+            </div>
+          </div>
+          <button
+            id="newUser"
+            class="btn waves-effect waves-light btn-form"
+            type="button"
+            name="action"
+          >
+            Submit
+          </button>
+
+          <p>
+            <label>
+              <input type="checkbox" />
+              <span>Recordar contraseña</span>
+            </label>
+          </p>
+        </form>
+      </div>
+    </div>
+    <div class="card-login grey z-depth-5 lighten-5 cont-login">
+      <div class="row justify-center">
+        <i class="material-icons large">account_circle</i>
+      </div>
+      <div class="row justify-center">
+        <form class="col s10">
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="emailLogin" type="email" class="validate" />
+              <label for="email">Email</label>
+            </div>
+          </div>
+          <div class="row">
+            <div class="input-field col s12">
+              <input id="passwordLogin" type="password" class="validate" />
+              <label for="passwordLogin" class="">Contraseña</label>
+            </div>
+          </div>
+
+          <button
+            class="btn waves-effect waves-light btn-form"
+            type="submit"
+            name="action"
+          >
+            Submit
+          </button>
+          <span class="span-pass">
+            <i class="material-icons">info</i>
+            <a href="#" class="deep-orange-text"
+              >Has olvidado tu contraseña?</a
+            ></span
+          >
+        </form>
+      </div>
+    </div>
+    <div class="fixed-action-btn">
+      <a class="btn-floating btn-large teal accent-4">
+        <i class="large material-icons">account_circle</i>
+      </a>
+      <ul>
+        <li>
+          <a class="sign btn-floating teal darken-3"
+            ><i class="material-icons">add</i></a
+          >
+        </li>
+        <li>
+          <a class="login btn-floating teal lighten-1"
+            ><i class="material-icons">login</i></a
+          >
+        </li>
+        <li>
+          <a class="searchFriend btn-floating teal lighten-3"
+            ><i class="material-icons">search</i></a
+          >
+        </li>
+      </ul>
+    </div>
+
+    <script type="text/javascript" src="assets/js/materialize.min.js"></script>
+    <script src="assets/js/index.js"></script>
+  </body>
+</html>
