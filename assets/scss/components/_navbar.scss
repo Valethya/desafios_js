@@ -35,8 +35,8 @@ nav {
     position: relative;
     height: 100%;
     ul{
-      width: 100vw;
-    //valentina
+      width: 40%;
+    // //valentina
     }
   }
 
@@ -120,7 +120,7 @@ nav {
       transition: background-color .3s;
       float: left;
       padding: 0;
-      width: 25%;
+      width: 100%;
       text-align: center;
 
       &.active {
@@ -147,7 +147,7 @@ nav {
       }
 
       &:hover {
-        background-color: $secondary-color-dark;
+        background-color: $primary-color-dark;
         transition: 3s;
       }
     }

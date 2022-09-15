@@ -1,26 +1,30 @@
 body{
     background: $secondary-color-light;
 }
+nav{
+    height:80px;
+    ul{
+    height: 100%;
+    li{
+        height: 100%;
+
+    }
+    .a-center{
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    }
+}
+.title-card{
+    height: 60px;
+}
 .content_header{
-    height: 20vh;
-    background-image: url(../img/citrics.jpg);
+    height: 40vh;
+    background-image: url(../img/libro-blanco.jpg);
     background-size: cover;
-}
-.img-mirror{
-    transform: scaleX(-1);
-}
-img{
-    object-fit: cover;
-    object-position:center;
-    min-height: 230px;
-} 
-.justify-center{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.flex{
-    display: flex;
+    background-position: center;
 }
 
 .main{
@@ -38,24 +42,53 @@ img{
     }
 }
 
+//helpers
+
+.img-mirror{
+    transform: scaleX(-1);
+}
+img{
+    object-fit: cover;
+    object-position:center;
+    min-height: 230px;
+} 
+.justify-center{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.justify-around{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+}
+.flex{
+    display: flex;
+    flex-wrap: wrap;
+}
+.flex-column{
+    display: flex;
+    flex-direction: column;
+}
+.center{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    flex-direction: row;
+
+}
+.margin{
+    margin: 1em;
+}
+
+
 // estilos index
 .wrap-promise{
     margin-top: 15vh;
     margin-bottom: 15vh;
 }
-.servicios{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    flex-wrap: wrap;
-}
-
-.arrow{
-    height: 50%;
-}
-
-
 .btn-card{
     position: absolute;
     right: 24px;
@@ -74,6 +107,35 @@ img{
       transition: 2s;
     }
   }
+
+//estilos libros
+.books{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.holdBookCard{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+}
+.book{
+    width: calc(100% / 4);
+    padding: 1em;
+}
+
+.arrow{
+    height: 50%;
+}
+///carrito
+.mi-badge{
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+}
+
 
  ///estilos login 
 .bg-login{
