@@ -32,10 +32,10 @@
           ><i class="material-icons">menu</i></a
         >
         <ul class="right hide-on-med-and-down justify-around">
-          <li><a class="a-center" href="sass.html">Home</a></li>
-          <li><a class="a-center" href="badges.html">Libros</a></li>
-          <li><a class="a-center" href="collapsible.html"><i class="material-icons">shopping_cart</i><sup class="red center mi-badge flex"><p class="white-text"><b>3</b></p></sup></a></li>
-          <li><a  href="collapsible.html"><i class="material-icons">account_circle</i><span>Mi cuenta</span></a></li>
+          <li><a class="a-center" href="#">Home</a></li>
+          <li><a class="a-center" href="#">Libros</a></li>
+          <li><a class="a-center"id="cart" href="#"><i class="material-icons ">shopping_cart</i></a></li>
+          <li><a  href="#"><i class="material-icons">account_circle</i><span>Mi cuenta</span></a></li>
         </ul>
       </div>
     </nav>
@@ -61,8 +61,11 @@
            <option value="Thriller">Thriller</option>
            <option value="Novela">Novela</option>
            <option value="Infantil">Infantil</option>
-           <option value="clases">clases</option>
-           <option value="todos">todos</option>
+           <option value="Psicología">Psicología</option>
+           <option value="Autoayuda">Autoayuda</option>
+           <option value="Ciencia Ficción">Ciencia Ficción</option>
+           <option value="Todos">Todos</option>
+   
          </select>
        </div>
        <button type="submit" value="serchBook" class="btn margin searchBook col s4">Buscar</button>
@@ -126,3 +129,16 @@
   </body>
 </html>
 
+
+<div class="cart">
+  <ul class="collection">
+    <li class="collection-item avatar book-added">
+      <img src=${book.img}>
+      <span class="title">${book.name}</span>
+      <p>${quantity}<br>
+         ${book.price}
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+    </li>
+  </ul>
+</div>

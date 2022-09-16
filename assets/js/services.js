@@ -1,5 +1,5 @@
 const books = [];
-
+const cart = [];
 class book {
   constructor(
     nombre,
@@ -118,9 +118,108 @@ let book8 = new book(
   "9788445013984",
   "8"
 );
+let book9 = new book(
+  "EL hombre en busca de sentido",
+  "Psicología",
+  "15000",
+  "10",
+  "assets/img/hombreSentido.jpg",
+  "Viktor Frankl",
+  "Herder",
+  "9788425432026",
+  "9"
+);
+
+let book10 = new book(
+  "El guardian entre el centeno",
+  "Ficción",
+  "20000",
+  "15",
+  "assets/img/guardianCenteno.jpg",
+  "Jerome D. Salinger",
+  "Edhasa",
+  "9788435008952",
+  "10"
+);
+
+let book11 = new book(
+  "Corazón: Diario de un niño",
+  "Novela",
+  "20000",
+  "15",
+  "assets/img/corazon.jpg",
+  "Edmundo De Amicis",
+  "Createspace",
+  "9781519574640",
+  "11"
+);
+
+let book12 = new book(
+  "Coaching para el éxito",
+  "Autoayuda",
+  "25000",
+  "8",
+  "assets/img/coachExito.jpg",
+  "Talane Miedaner",
+  "Urano",
+  "9788479534905",
+  "12"
+);
+
+let book13 = new book(
+  "El principito",
+  "Infantil",
+  "15000",
+  "10",
+  "assets/img/principito.jpg",
+  "Talane Miedaner",
+  "Salamandra",
+  "9788418174193",
+  "13"
+);
+
+let book14 = new book(
+  "La cruzada en Jeans",
+  "Infantil",
+  "20000",
+  "9",
+  "assets/img/cruzadaJeans.jpg",
+  "Thea Beckman",
+  "Sm De ediciones",
+  "9786072433540",
+  "14"
+);
+
+let book15 = new book(
+  "Fundación y tierra",
+  "Ciencia Ficción",
+  "30000",
+  "5",
+  "assets/img/fundacionTierra.jpg",
+  "Isaac Asimov",
+  "De Bolsillo",
+  "9786073145015",
+  "15"
+);
 
 const bookArr = () => {
-  books.push(book1, book2, book3, book4, book5, book6, book7, book8);
+  books.push(
+    book1,
+    book2,
+    book3,
+    book4,
+    book5,
+    book6,
+    book7,
+    book8,
+    book9,
+    book10,
+    book11,
+    book12,
+    book13,
+    book14,
+    book15
+  );
 };
 
 bookArr();
@@ -147,8 +246,21 @@ function higherPrice(arr) {
     return b.price - a.price;
   });
 }
+//
+function showHidden(selector, element) {
+  let boton = document.querySelector(selector);
+  boton.addEventListener("click", () => {
+    let div = document.querySelector(element);
+    if (div.style.display === "none") {
+      div.style.display = "block";
+    } else {
+      div.style.display = "none";
+    }
+  });
+}
 
-//load books
+showHidden("#cart", ".cart");
+//load books: load the books to the pages
 
 const loadBook = (books) => {
   let holdBook = document.querySelector(".holdBookCard");
@@ -164,7 +276,9 @@ const loadBook = (books) => {
     <div class="card-image">
     <img src=${book.img}>
     
-    <a class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons">add</i></a>
+    <a id=${
+      book.id
+    } class="addBook btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons">add</i></a>
     </div>
     <div class="card-content">
     <div class="title-card">
@@ -183,14 +297,11 @@ const loadBook = (books) => {
 };
 loadBook(books);
 
-///found book
+///search book
 
 const formBook = document.querySelector("#searchBook");
 
-//// listener event submit
-formBook.addEventListener("submit", (e) => {
-  e.preventDefault();
-
+const SearchBooks = () => {
   //Variables de inputs
   let optionType = document.querySelector(".typeBook").value;
   let nameBook = document.querySelector("#searchBooks").value.toLowerCase();
@@ -210,9 +321,9 @@ formBook.addEventListener("submit", (e) => {
     book.name.toLowerCase().match(nameBook)
   );
 
-  //el nombre se filtra por categoria
+  //name is filtered by category
   if (booksFound != books) {
-    if (optionType == "todos") {
+    if (optionType == "Todos") {
       loadBook(booksFound);
     } else {
       let booksFoundType = booksFound.filter(
@@ -222,54 +333,109 @@ formBook.addEventListener("submit", (e) => {
     }
   }
   //filtrar solo categoria si no hay nombre
-  if (booksFound == books && optionType == "todos") {
+  if (booksFound == books && optionType == "Todos") {
     loadBook(books);
   } else if (booksFound == books) {
     let booksFound = books.filter((book) => book.type === optionType);
     loadBook(booksFound);
   }
+};
+
+//// listener event submit
+formBook.addEventListener("submit", (e) => {
+  e.preventDefault();
+
+  SearchBooks();
 });
 
 // listener event keycap enter
 
 formBook.addEventListener("keyup", (e) => {
   e.preventDefault();
-  e.keycode === "enter";
-  //Variables de inputs
-  let optionType = document.querySelector(".typeBook").value;
-  let nameBook = document.querySelector("#searchBooks").value;
-  let optionPrice = document.querySelector(".orderPrice").value;
-
-  //filtrar precios
-
-  if (optionPrice === "menorMayor") {
-    lowerPrice(books);
-  } else if (optionPrice === "mayorMenor") {
-    higherPrice(books);
-  }
-
-  //filtrar por nombre
-
-  let booksFound = books.filter((book) => book.name.match(nameBook));
-
-  //el nombre se filtra por categoria
-  if (booksFound != books) {
-    if (optionType == "todos") {
-      loadBook(booksFound);
-    } else {
-      let booksFoundType = booksFound.filter(
-        (book) => book.type === optionType
-      );
-      loadBook(booksFoundType);
-    }
-  }
-  //filtrar solo categoria si no hay nombre
-  if (booksFound == books && optionType == "todos") {
-    loadBook(books);
-  } else if (booksFound == books) {
-    let booksFound = books.filter((book) => book.type === optionType);
-    loadBook(booksFound);
+  if (e.key === 13) {
+    SearchBooks();
   }
 });
 
 ///carrito de compras
+
+///agregar producto
+const addBookCart = (cart) => {
+  let holdAddBook = document.querySelector(".collection");
+  let bookAdded = document.querySelector(".book-added");
+  if (bookAdded) {
+    holdAddBook.innerHTML = "";
+  }
+  for (const book of cart) {
+    let div = document.createElement("div");
+    div.setAttribute("class", "collection-item avatar book-added");
+    div.innerHTML = `
+      <img src=${book.img} class="circle">
+      <span class="title">${book.name}</span>
+      <p>Cantidad: ${book.quantity}<br>
+      Precio: ${formatPrice(book.price)}
+      </p>
+      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+          `;
+    holdAddBook.appendChild(div);
+  }
+};
+
+const addBooks = () => {
+  btns = document.querySelectorAll(".addBook");
+  for (const btn of btns) {
+    btn.addEventListener("click", () => {
+      debugger;
+      let idBook = cart.find((book) => book.id == btn.id);
+      if (idBook) {
+        idBook.quantity++;
+      } else {
+        let book = books.find((book) => book.id == btn.id);
+        if (book) {
+          let newBook = {
+            img: book.img,
+            id: book.id,
+            name: book.name,
+            price: book.price,
+            quantity: 1,
+          };
+          cart.push(newBook);
+        }
+      }
+      addBookCart(cart);
+      addBadge();
+      changeBadge();
+    });
+  }
+};
+
+addBooks();
+
+const totalbook = () => {
+  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
+  return sum;
+};
+
+const addBadge = () => {
+  debugger;
+  let linkbad = document.querySelector("#cart");
+  let badge = document.querySelector(".mi-badge");
+  if (badge) {
+  } else {
+    let sup = document.createElement("sup");
+    sup.setAttribute("class", "red center mi-badge flex");
+    sup.innerHTML = `
+          <p class="white-text badged"><b>${totalbook()}</b></p>
+                `;
+    linkbad.insertAdjacentElement("beforeend", sup);
+  }
+};
+
+const changeBadge = () => {
+  debugger;
+  let badged = document.querySelector(".mi-badge");
+  let sup = document.querySelector(".badged");
+  if (sup) {
+    badged.innerHTML = `<p class="white-text badged"><b>${totalbook()}</b></p>`;
+  }
+};

@@ -17,9 +17,7 @@ nav{
     }
     }
 }
-.title-card{
-    height: 60px;
-}
+
 .content_header{
     height: 40vh;
     background-image: url(../img/libro-blanco.jpg);
@@ -50,7 +48,6 @@ nav{
 img{
     object-fit: cover;
     object-position:center;
-    min-height: 230px;
 } 
 .justify-center{
     display: flex;
@@ -123,7 +120,17 @@ img{
 }
 .book{
     width: calc(100% / 4);
-    padding: 1em;
+    padding: 0.5em;
+    font-size: 12px;
+    img{
+        height: 284px;
+    }
+    .card-title{
+        font-size: 14px;
+        line-height: 1;
+        height: 50px;
+        font-weight: bold;
+    }
 }
 
 .arrow{
@@ -135,7 +142,18 @@ img{
     height: 20px;
     width: 20px;
 }
-
+.cart{
+    width: 25%;
+    position: fixed;
+    bottom:0px;
+    right: 10px;
+    z-index: 300;
+    display: none;
+    // img{
+    //     width: 30%;
+    //     object-fit: contain;
+    // }
+}
 
  ///estilos login 
 .bg-login{
