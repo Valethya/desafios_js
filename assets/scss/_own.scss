@@ -2,18 +2,21 @@ body{
     background: $secondary-color-light;
 }
 nav{
-    height:80px;
+    height:55px;
     ul{
     height: 100%;
     li{
         height: 100%;
-
     }
     .a-center{
         height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+    }
+    .a-center-column{
+@extend .a-center;
+flex-direction: column;
     }
     }
 }
@@ -56,6 +59,7 @@ img{
 }
 .justify-around{
     display: flex;
+    // flex-wrap: wrap;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
@@ -119,17 +123,30 @@ img{
     flex-direction: row;
 }
 .book{
-    width: calc(100% / 4);
+    width: calc(100% /2);
     padding: 0.5em;
     font-size: 12px;
     img{
-        height: 284px;
+        height: 180px;
     }
     .card-title{
         font-size: 14px;
         line-height: 1;
         height: 50px;
         font-weight: bold;
+    }
+    .card-content{
+        height: 179px;
+    }
+}
+@media #{$medium-and-up} {
+    .book {
+        width: calc(100% / 3);
+    }
+    }
+@media #{$large-and-up} {
+    .book {
+        width: calc(100% / 4);
     }
 }
 
@@ -188,3 +205,4 @@ padding: 2em;
     min-height: 75vh;
     transition: 3s;
 }
+///form

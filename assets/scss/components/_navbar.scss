@@ -207,8 +207,7 @@ nav {
     min-height: $navbar-height;
   }
   nav, nav .nav-wrapper i, nav a.sidenav-trigger, nav a.sidenav-trigger i {
-    height: $navbar-height;
-    line-height: $navbar-line-height;
+    line-height:1;
     position: sticky;
     top: 0;//valentina
     z-index: 1000;

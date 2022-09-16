@@ -302,6 +302,7 @@ loadBook(books);
 const formBook = document.querySelector("#searchBook");
 
 const SearchBooks = () => {
+  debugger;
   //Variables de inputs
   let optionType = document.querySelector(".typeBook").value;
   let nameBook = document.querySelector("#searchBooks").value.toLowerCase();
@@ -322,16 +323,16 @@ const SearchBooks = () => {
   );
 
   //name is filtered by category
-  if (booksFound != books) {
-    if (optionType == "Todos") {
-      loadBook(booksFound);
-    } else {
-      let booksFoundType = booksFound.filter(
-        (book) => book.type === optionType
-      );
-      loadBook(booksFoundType);
-    }
+  // if (booksFound != books) {
+  if (optionType == "") {
+    loadBook(booksFound);
+  } else if (optionType == "Todos") {
+    loadBook(booksFound);
+  } else {
+    let booksFoundType = booksFound.filter((book) => book.type === optionType);
+    loadBook(booksFoundType);
   }
+  //}
   //filtrar solo categoria si no hay nombre
   if (booksFound == books && optionType == "Todos") {
     loadBook(books);
@@ -439,3 +440,5 @@ const changeBadge = () => {
     badged.innerHTML = `<p class="white-text badged"><b>${totalbook()}</b></p>`;
   }
 };
+
+// products.filter(el => el.name.Includes(parameter) ? SearchBooks.push(el):);
