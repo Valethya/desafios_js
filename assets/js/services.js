@@ -446,7 +446,12 @@ const addBook = () => {
 addBook();
 
 //eliminar libro del carrito
-//problema:la funcion no hace nada si no la llamo manualmente...
+debugger;
+let lista = document.querySelector(".collection");
+let cartId = [];
+let id = cart.map(function (book) {
+  cartId.push(book.id);
+});
 
 const deleteBook = () => {
   let btns = document.querySelectorAll(".delet-book");
@@ -454,17 +459,26 @@ const deleteBook = () => {
     btn.addEventListener("click", () => {
       debugger;
       let idBook = cart.find((book) => book.id == btn.id);
-      if (idBook.quantity === 1) {
-        let cartBook = document.querySelector(".collection");
-        cartBook.children.length;
-        cartBook.removeChild("esto no se que hacer pero no importa");
-      } else {
-        idBook.quantity--;
-        addBookCart(cart);
-      }
 
+      if (idBook.quantity === 1) {
+        let index = cartId.indexOf(idBook.id);
+        cart.splice(index);
+      } else if (idBook) {
+        idBook.quantity--;
+      }
+      addBookCart(cart);
       addBadge();
       counterBadge();
+      if (lista.children.length == 0) {
+        let holdAddBook = document.querySelector(".collection");
+        let div = document.createElement("li");
+        div.setAttribute("class", "collection-item avatar book-added");
+        div.innerHTML = `
+          <img class="cricket"src="assets/img/grillo.png"><img>
+        <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
+      `;
+        holdAddBook.appendChild(div);
+      }
     });
   }
 };
