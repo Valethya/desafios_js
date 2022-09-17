@@ -166,12 +166,14 @@ img{
     right: 10px;
     z-index: 300;
     display: none;
-    // img{
-    //     width: 30%;
-    //     object-fit: contain;
-    // }
-}
 
+}
+.cricket{
+    width: 60px;
+    height: 60px;
+    float: right; 
+    margin-left: 1em;
+   }
  ///estilos login 
 .bg-login{
     background: url(../img/citrics.jpg);

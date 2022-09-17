@@ -260,13 +260,14 @@ function showHidden(selector, element) {
 }
 
 showHidden("#cart", ".cart");
+///
 //load books: load the books to the pages
 
 const loadBook = (books) => {
-  let holdBook = document.querySelector(".holdBookCard");
-  let bookHtml = document.querySelector(".book");
-  if (bookHtml) {
-    holdBook.innerHTML = "";
+  let container = document.querySelector(".holdBookCard");
+  let element = document.querySelector(".book");
+  if (element) {
+    container.innerHTML = "";
   }
   for (const book of books) {
     let div = document.createElement("div");
@@ -290,9 +291,9 @@ const loadBook = (books) => {
     </div>
 </div>
         `;
-    if (bookHtml) {
+    if (element) {
     }
-    holdBook.appendChild(div);
+    container.appendChild(div);
   }
 };
 loadBook(books);
@@ -368,7 +369,7 @@ const addBookCart = (cart) => {
     holdAddBook.innerHTML = "";
   }
   for (const book of cart) {
-    let div = document.createElement("div");
+    let div = document.createElement("li");
     div.setAttribute("class", "collection-item avatar book-added");
     div.innerHTML = `
       <img src=${book.img} class="circle">
@@ -376,13 +377,45 @@ const addBookCart = (cart) => {
       <p>Cantidad: ${book.quantity}<br>
       Precio: ${formatPrice(book.price)}
       </p>
-      <a href="#!" class="secondary-content"><i class="material-icons">grade</i></a>
+      <a href="#!" id=${
+        book.id
+      }  class="secondary-content delet-book"><i class="material-icons ">delete_outline</i></a>
           `;
     holdAddBook.appendChild(div);
   }
 };
+///suma total de productos del carrito
+const totalbook = () => {
+  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
+  return sum;
+};
+// agregar badge al icono de carrito
+const addBadge = () => {
+  debugger;
+  let linkbad = document.querySelector("#cart");
+  let badge = document.querySelector(".mi-badge");
+  if (badge) {
+  } else {
+    let sup = document.createElement("sup");
+    sup.setAttribute("class", "red center mi-badge flex");
+    sup.innerHTML = `
+          <p class="white-text badged"><b>${totalbook()}</b></p>
+                `;
+    linkbad.insertAdjacentElement("beforeend", sup);
+  }
+};
 
-const addBooks = () => {
+const counterBadge = () => {
+  debugger;
+  let badged = document.querySelector(".mi-badge");
+  let sup = document.querySelector(".badged");
+  if (sup) {
+    badged.innerHTML = `<p class="white-text badged"><b>${totalbook()}</b></p>`;
+  }
+};
+
+/// agregar libro al carrito
+const addBook = () => {
   btns = document.querySelectorAll(".addBook");
   for (const btn of btns) {
     btn.addEventListener("click", () => {
@@ -405,40 +438,35 @@ const addBooks = () => {
       }
       addBookCart(cart);
       addBadge();
-      changeBadge();
+      counterBadge();
     });
   }
 };
 
-addBooks();
+addBook();
 
-const totalbook = () => {
-  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
-  return sum;
-};
+//eliminar libro del carrito
+//problema:la funcion no hace nada si no la llamo manualmente...
 
-const addBadge = () => {
-  debugger;
-  let linkbad = document.querySelector("#cart");
-  let badge = document.querySelector(".mi-badge");
-  if (badge) {
-  } else {
-    let sup = document.createElement("sup");
-    sup.setAttribute("class", "red center mi-badge flex");
-    sup.innerHTML = `
-          <p class="white-text badged"><b>${totalbook()}</b></p>
-                `;
-    linkbad.insertAdjacentElement("beforeend", sup);
+const deleteBook = () => {
+  let btns = document.querySelectorAll(".delet-book");
+  for (const btn of btns) {
+    btn.addEventListener("click", () => {
+      debugger;
+      let idBook = cart.find((book) => book.id == btn.id);
+      if (idBook.quantity === 1) {
+        let cartBook = document.querySelector(".collection");
+        cartBook.children.length;
+        cartBook.removeChild("esto no se que hacer pero no importa");
+      } else {
+        idBook.quantity--;
+        addBookCart(cart);
+      }
+
+      addBadge();
+      counterBadge();
+    });
   }
 };
 
-const changeBadge = () => {
-  debugger;
-  let badged = document.querySelector(".mi-badge");
-  let sup = document.querySelector(".badged");
-  if (sup) {
-    badged.innerHTML = `<p class="white-text badged"><b>${totalbook()}</b></p>`;
-  }
-};
-
-// products.filter(el => el.name.Includes(parameter) ? SearchBooks.push(el):);
+deleteBook();
