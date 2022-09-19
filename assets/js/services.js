@@ -385,12 +385,20 @@ let holdBookCard = document.querySelector(".holdBookCard");
 
 holdBookCard.addEventListener("click", addBook);
 
+const sumQuantityOfBooks = (idBook) => {
+  if (idBook.quantity == idBook.availability) {
+    alert("no puedes agregar mas libros");
+  } else {
+    idBook.quantity++;
+  }
+};
+
 function addBook(e) {
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
     let idBook = cart.find((book) => book.id == idBtn);
     if (idBook) {
-      idBook.quantity++;
+      sumQuantityOfBooks(idBook);
     } else {
       let book = books.find((book) => book.id == idBtn);
       if (book) {
@@ -401,11 +409,11 @@ function addBook(e) {
           price: book.price,
           quantity: 1,
           finalPrice: book.price,
+          availability: book.availability,
         };
         cart.push(newBook);
       }
     }
-    debugger;
     addBookCart(cart);
     addfinalpriceCart();
     addCounter();
@@ -474,7 +482,6 @@ collection.addEventListener("click", deleteBook);
 
 //eliminar cantidad de libros o el libro mismo del carrito
 function deleteBook(e) {
-  debugger;
   if (e.target.classList.contains("delete-book")) {
     let idBook = e.target.getAttribute("data-id");
     console.log(idBook);

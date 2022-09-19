@@ -6524,11 +6524,14 @@ img {
   display: none;
   height: 100vh;
   background: #fff;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: space-between; }
-  .cart a i {
-    margin: 0.5em; }
+  .cart a {
+    width: fit-content; }
+    .cart a i {
+      margin: 0.5em;
+      cursor: pointer; }
   .cart .collection {
     overflow-y: auto; }
     .cart .collection .collection-item .cricket {
