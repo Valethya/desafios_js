@@ -47,12 +47,12 @@ const getInputValue = (id) => {
 
 //show or hidden the login o sign div
 
-function showHidden(selector, element) {
+function showHidden(selector, element, display) {
   let boton = document.querySelector(selector);
   boton.addEventListener("click", () => {
     let div = document.querySelector(element);
     if (div.style.display === "none") {
-      div.style.display = "block";
+      div.style.display = display;
     } else {
       div.style.display = "none";
     }

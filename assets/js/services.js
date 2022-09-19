@@ -1,5 +1,5 @@
 const books = [];
-let cart = [];
+let cart = []; //no es una contante por que de momento no se como eliminar un producto del carro. solo puedo filtrarlo.
 class book {
   constructor(
     nombre,
@@ -248,7 +248,8 @@ function higherPrice(arr) {
 }
 //
 
-showHidden("#cart", ".cart");
+showHidden("#cart", ".cart", "flex");
+showHidden("#remove", ".cart", "flex");
 ///
 //load books: load the books to the pages
 
@@ -356,14 +357,19 @@ const addBookCart = (cart) => {
   if (bookAdded) {
     holdAddBook.innerHTML = "";
   }
+  createBookInCart(cart, holdAddBook);
+};
+
+const createBookInCart = (cart, holdAddBook) => {
   for (const book of cart) {
     let div = document.createElement("li");
     div.setAttribute("class", "collection-item avatar book-added");
     div.innerHTML = `
       <img src=${book.img} class="circle">
-      <span class="title">${book.name}</span>
+      <span class="title teal-text"><b>${book.name}</b></span>
       <p>Cantidad: ${book.quantity}<br>
-      Precio: ${formatPrice(book.price)}
+      Precio: ${formatPrice(book.price)}<br>
+      total:<b>${formatPrice(parseInt(book.finalPrice * book.quantity))}</b>
       </p>
       <a href="#!"  class="secondary-content "><i class="material-icons delete-book "  data-id=${
         book.id
@@ -372,38 +378,8 @@ const addBookCart = (cart) => {
     holdAddBook.appendChild(div);
   }
 };
-///suma total de productos del carrito
-const totalbook = () => {
-  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
-  return sum;
-};
-// agregar badge al icono de carrito
-const addBadge = () => {
-  let linkbad = document.querySelector("#cart");
-  let badge = document.querySelector(".mi-badge");
-  if (badge) {
-  } else {
-    let sup = document.createElement("sup");
-    sup.setAttribute("class", "red center mi-badge flex");
-    sup.innerHTML = `
-          <p class="white-text counterBadged"><b>${totalbook()}</b></p>
-                `;
-    linkbad.insertAdjacentElement("beforeend", sup);
-  }
-};
-// cambiar el contador del badge o eliminar si el contador llega a 0
-const counterBadge = () => {
-  let sup = document.querySelector(".mi-badge");
-  let badged = document.querySelector(".counterBadged");
-  if (totalbook() === 0) {
-    let cart = document.querySelector("#cart");
-    cart.removeChild(sup);
-  } else if (badged) {
-    sup.innerHTML = `<p class="white-text counterBadged"><b>${totalbook()}</b></p>`;
-  }
-};
 
-/// agregar libro al carrito
+/// agregar cantidad de libro al carrito
 
 let holdBookCard = document.querySelector(".holdBookCard");
 
@@ -412,7 +388,7 @@ holdBookCard.addEventListener("click", addBook);
 function addBook(e) {
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
-    idBook = cart.find((book) => book.id == idBtn);
+    let idBook = cart.find((book) => book.id == idBtn);
     if (idBook) {
       idBook.quantity++;
     } else {
@@ -424,28 +400,79 @@ function addBook(e) {
           name: book.name,
           price: book.price,
           quantity: 1,
+          finalPrice: book.price,
         };
         cart.push(newBook);
       }
     }
+    debugger;
     addBookCart(cart);
-    addBadge();
-    counterBadge();
+    addfinalpriceCart();
+    addCounter();
+    changeCounter();
   }
 }
 
-//eliminar libro del carrito
+///suma total de productos del carrito
 
-let lista = document.querySelector(".collection");
-let cartId = [];
-let id = cart.map(function (book) {
-  cartId.push(book.id);
-});
+const totalbook = () => {
+  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
+  return sum;
+};
+
+const finalPriceCart = () => {
+  const finalPrice = cart
+    .map((book) => parseInt(book.price * book.quantity))
+    .reduce((a, b) => a + b, 0);
+  return finalPrice;
+};
+
+const addfinalpriceCart = () => {
+  let container = document.querySelector(".collection");
+  let div = document.createElement("li");
+  div.setAttribute("class", "collection-item bottom total-price");
+  div.innerHTML = `
+      <span class="title">TOTAL</span>
+      <p class="total teal-text">
+      ${formatPrice(finalPriceCart())}
+        </p>  `;
+  container.appendChild(div);
+};
+
+// agregar counter al icono de carrito
+
+const addCounter = () => {
+  let linkbad = document.querySelector("#cart");
+  let counter = document.querySelector(".mi-counter");
+  if (counter) {
+  } else {
+    let sup = document.createElement("sup");
+    sup.setAttribute("class", "red center mi-counter flex");
+    sup.innerHTML = `
+          <p class="white-text counter"><b>${totalbook()}</b></p>
+                `;
+    linkbad.insertAdjacentElement("beforeend", sup);
+  }
+};
+// cambiar el contador del counter o eliminar si el contador llega a 0
+const changeCounter = () => {
+  let sup = document.querySelector(".mi-counter");
+  let counter = document.querySelector(".counter");
+  if (totalbook() === 0) {
+    let cart = document.querySelector("#cart");
+    cart.removeChild(sup);
+  } else if (counter) {
+    sup.innerHTML = `<p class="white-text counter"><b>${totalbook()}</b></p>`;
+  }
+};
+
+//eliminar libro del carrito
 
 let collection = document.querySelector(".collection");
 
 collection.addEventListener("click", deleteBook);
 
+//eliminar cantidad de libros o el libro mismo del carrito
 function deleteBook(e) {
   debugger;
   if (e.target.classList.contains("delete-book")) {
@@ -459,17 +486,23 @@ function deleteBook(e) {
       idBook.quantity--;
     }
     addBookCart(cart);
-    addBadge();
-    counterBadge();
-    if (lista.children.length == 0) {
-      let holdAddBook = document.querySelector(".collection");
-      let div = document.createElement("li");
-      div.setAttribute("class", "collection-item avatar book-added");
-      div.innerHTML = `
-        <img class="cricket"src="assets/img/grillo.png"><img>
-      <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
-    `;
-      holdAddBook.appendChild(div);
-    }
+    addCounter();
+    changeCounter();
+    addfinalpriceCart();
+    deleteLastBook();
   }
 }
+//eliminar ultimo libro del carrito
+const deleteLastBook = () => {
+  if (collection.children.length == 1) {
+    let holdAddBook = document.querySelector(".collection");
+    let div = document.createElement("li");
+    div.setAttribute("class", "collection-item avatar book-added");
+    div.innerHTML = `
+      <img class="cricket"src="assets/img/grillo.png"><img>
+    <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
+  `;
+    holdAddBook.innerHTML = "";
+    holdAddBook.appendChild(div);
+  }
+};

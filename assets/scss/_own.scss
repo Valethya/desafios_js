@@ -154,7 +154,7 @@ flex-wrap: wrap;
     height: 50%;
 }
 ///carrito
-.mi-badge{
+.mi-counter{
     border-radius: 50%;
     height: 20px;
     width: 20px;
@@ -163,10 +163,22 @@ flex-wrap: wrap;
     width: 60%;
     position: fixed;
     bottom:0px;
-    right: 10px;
-    z-index: 300;
+    right: 0px;
+    z-index: 1000;
     display: none;
+    height: 100vh;
+    background:#fff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    a{
+        i{
+            margin: 0.5em;
+        }
+    }
     .collection{
+        overflow-y: auto;
         .collection-item{
             .cricket{
                 width: 60px;
@@ -174,8 +186,13 @@ flex-wrap: wrap;
                 float: right; 
                 margin-left: 1em;
                }
+               .total{
+                font-size: 120%;
+                font-weight: bold;
+               }
         }
     }
+  
 
 }
 @media #{$medium-and-up}{
