@@ -47,21 +47,24 @@ const getInputValue = (id) => {
 
 //show or hidden the login o sign div
 
-function showHidden(selector, element, display) {
+function listenerShowHidden(selector, element, display) {
   let boton = document.querySelector(selector);
   boton.addEventListener("click", () => {
-    let div = document.querySelector(element);
-    if (div.style.display === "none") {
-      div.style.display = display;
-    } else {
-      div.style.display = "none";
-    }
+    showHidden(element, display);
   });
 }
+const showHidden = (element, display) => {
+  let div = document.querySelector(element);
+  if (div.style.display === "none") {
+    div.style.display = display;
+  } else {
+    div.style.display = "none";
+  }
+};
 
-showHidden(".sign", ".card-sign");
+listenerShowHidden(".sign", ".card-sign");
 
-showHidden(".login", ".card-login");
+listenerShowHidden(".login", ".card-login");
 
 ///addUser ask for name, email and password to creat the user
 

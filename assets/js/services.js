@@ -248,8 +248,8 @@ function higherPrice(arr) {
 }
 //
 
-showHidden("#cart", ".cart", "flex");
-showHidden("#remove", ".cart", "flex");
+listenerShowHidden("#cart", ".cart", "flex");
+listenerShowHidden("#remove", ".cart", "flex");
 ///
 //load books: load the books to the pages
 
@@ -369,7 +369,7 @@ const createBookInCart = (cart, holdAddBook) => {
       <span class="title teal-text"><b>${book.name}</b></span>
       <p>Cantidad: ${book.quantity}<br>
       Precio: ${formatPrice(book.price)}<br>
-      total:<b>${formatPrice(parseInt(book.finalPrice * book.quantity))}</b>
+      total:<b>${formatPrice(parseInt(book.price * book.quantity))}</b>
       </p>
       <a href="#!"  class="secondary-content "><i class="material-icons delete-book "  data-id=${
         book.id
@@ -385,6 +385,7 @@ let holdBookCard = document.querySelector(".holdBookCard");
 
 holdBookCard.addEventListener("click", addBook);
 
+//si el libro ya esta en el array cart solo se suman mas a la cantidad
 const sumQuantityOfBooks = (idBook) => {
   if (idBook.quantity == idBook.availability) {
     alert("no puedes agregar mas libros");
@@ -393,6 +394,15 @@ const sumQuantityOfBooks = (idBook) => {
   }
 };
 
+// si el libro no esta en el array cart se agrega al array
+const addBookArrayCart = (idBtn) => {
+  let book = books.find((book) => book.id == idBtn);
+  if (book) {
+    book.quantity = 1;
+    cart.push(book);
+  }
+};
+//escucha de btns para agregar libro al carrito
 function addBook(e) {
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
@@ -400,24 +410,11 @@ function addBook(e) {
     if (idBook) {
       sumQuantityOfBooks(idBook);
     } else {
-      let book = books.find((book) => book.id == idBtn);
-      if (book) {
-        let newBook = {
-          img: book.img,
-          id: book.id,
-          name: book.name,
-          price: book.price,
-          quantity: 1,
-          finalPrice: book.price,
-          availability: book.availability,
-        };
-        cart.push(newBook);
-      }
+      addBookArrayCart(idBtn);
     }
     addBookCart(cart);
     addfinalpriceCart();
     addCounter();
-    changeCounter();
   }
 }
 
@@ -436,6 +433,7 @@ const finalPriceCart = () => {
 };
 
 const addfinalpriceCart = () => {
+  debugger;
   let container = document.querySelector(".collection");
   let div = document.createElement("li");
   div.setAttribute("class", "collection-item bottom total-price");
@@ -452,8 +450,7 @@ const addfinalpriceCart = () => {
 const addCounter = () => {
   let linkbad = document.querySelector("#cart");
   let counter = document.querySelector(".mi-counter");
-  if (counter) {
-  } else {
+  if (!counter) {
     let sup = document.createElement("sup");
     sup.setAttribute("class", "red center mi-counter flex");
     sup.innerHTML = `
@@ -461,6 +458,7 @@ const addCounter = () => {
                 `;
     linkbad.insertAdjacentElement("beforeend", sup);
   }
+  changeCounter();
 };
 // cambiar el contador del counter o eliminar si el contador llega a 0
 const changeCounter = () => {
@@ -493,7 +491,6 @@ function deleteBook(e) {
       idBook.quantity--;
     }
     addBookCart(cart);
-    addCounter();
     changeCounter();
     addfinalpriceCart();
     deleteLastBook();
@@ -511,5 +508,6 @@ const deleteLastBook = () => {
   `;
     holdAddBook.innerHTML = "";
     holdAddBook.appendChild(div);
+    showHidden(".cart", "flex");
   }
 };
