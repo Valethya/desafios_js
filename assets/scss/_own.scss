@@ -45,9 +45,6 @@ flex-direction: column;
 
 //helpers
 
-.img-mirror{
-    transform: scaleX(-1);
-}
 img{
     object-fit: cover;
     object-position:center;
@@ -84,30 +81,14 @@ img{
     margin: 1em;
 }
 
+//form 
+ #searchBook{
+flex-wrap: wrap;
+}
+@media #{$medium-and-up} {#searchBook{
+    flex-wrap:nowrap;
+}}
 
-// estilos index
-.wrap-promise{
-    margin-top: 15vh;
-    margin-bottom: 15vh;
-}
-.btn-card{
-    position: absolute;
-    right: 24px;
-    bottom: -20px; 
-}
-.info{
-    margin-top: 2em;
-}
-
-.hover-p{
-    p{
-      transition: 1s;
-    }
-    &:hover p{
-      color: #000 !important ; 
-      transition: 2s;
-    }
-  }
 
 //estilos libros
 .books{
@@ -116,37 +97,56 @@ img{
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-}
-.holdBookCard{
-    display: flex;
-    flex-wrap: wrap;
-    flex-direction: row;
-}
-.book{
-    width: calc(100% /2);
-    padding: 0.5em;
-    font-size: 12px;
-    img{
-        height: 180px;
+    .holdBookCard{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        .book{
+            width: calc(100% /2);
+            padding: 0.5em;
+            font-size: 12px;
+            img{
+                height: 180px;
+            }
     }
+}
+.card-content{
+    height: 179px;
     .card-title{
         font-size: 14px;
         line-height: 1;
-        height: 50px;
-        font-weight: bold;
-    }
-    .card-content{
-        height: 179px;
+        font-weight: bold; 
+        height: 64px;
+        display: -webkit-box;
+        white-space: normal;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
     }
 }
+    
+
+}
 @media #{$medium-and-up} {
-    .book {
-        width: calc(100% / 3);
+    .books{
+        .holdBookCard{
+            .book {
+            width: calc(100% / 3);
+            img{
+                height: 280px;
+            }
+        }}
+        
     }
+    
     }
 @media #{$large-and-up} {
-    .book {
-        width: calc(100% / 4);
+    .books{
+        .holdBookCard{
+            .book {
+                width: calc(100% / 4);
+        }}
+        
     }
 }
 
@@ -160,20 +160,36 @@ img{
     width: 20px;
 }
 .cart{
-    width: 25%;
+    width: 60%;
     position: fixed;
     bottom:0px;
     right: 10px;
     z-index: 300;
     display: none;
+    .collection{
+        .collection-item{
+            .cricket{
+                width: 60px;
+                height: 60px;
+                float: right; 
+                margin-left: 1em;
+               }
+        }
+    }
 
 }
-.cricket{
-    width: 60px;
-    height: 60px;
-    float: right; 
-    margin-left: 1em;
-   }
+@media #{$medium-and-up}{
+    .cart{
+        width: 40%;
+    }
+}
+@media #{$large-and-up}{
+    .cart{
+        width: 25%;
+    }
+  
+}
+
  ///estilos login 
 .bg-login{
     background: url(../img/citrics.jpg);

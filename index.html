@@ -23,53 +23,75 @@
   <body>
     <header>
       <div class="content_header"></div>
-
     </header>
-  
+
     <nav class="nav">
       <div class="nav-wrapper">
         <a href="#" data-target="mobile-demo" class="sidenav-trigger"
           ><i class="material-icons">menu</i></a
         >
+        <ul class="right justify-around">
+          <li>
+            <a class="a-center" id="cart" href="#"
+              ><i class="material-icons">shopping_cart</i></a
+            >
+          </li>
+          <li>
+            <a class="a-center-column" href="#"
+              ><i class="material-icons">account_circle</i
+              ><span>Mi cuenta</span></a
+            >
+          </li>
+        </ul>
         <ul class="right hide-on-med-and-down justify-around">
           <li><a class="a-center" href="#">Home</a></li>
           <li><a class="a-center" href="#">Libros</a></li>
-          <li><a class="a-center"id="cart" href="#"><i class="material-icons ">shopping_cart</i></a></li>
-          <li><a  class ="a-center-column"href="#"><i class="material-icons">account_circle</i><span>Mi cuenta</span></a></li>
         </ul>
       </div>
     </nav>
     <div class="row shades white">
       <form id="searchBook" class="col s12 justify-around">
-     <div class="nav-wrapper col s12 m4"> 
-       <div class="input-field">
-         <input id="searchBooks" type="search" placeholder="Busca un Libro">
-         <label class="label-icon" for="search"><i class="material-icons teal-text">search</i></label>
-         <i class="material-icons">close</i>
-       </div>
-   </div>
-     <div class="input-field col s6 m4 ">
-       <select class="orderPrice">
-         <option value="orderPrice" disabled selected>orden de precios</option>
-         <option id="menorMayor" value="menorMayor">de menor a mayor</option>
-         <option id="mayorMenor" value="mayorMenor">de mayor a menor</option>
-       </select>
-     </div>
-       <div class="input-field col s6 m4">
-         <select class="typeBook">
-           <option value="" disabled selected>Categoria</option>
-           <option value="Thriller">Thriller</option>
-           <option value="Novela">Novela</option>
-           <option value="Infantil">Infantil</option>
-           <option value="Psicología">Psicología</option>
-           <option value="Autoayuda">Autoayuda</option>
-           <option value="Ciencia Ficción">Ciencia Ficción</option>
-           <option value="Todos">Todos</option>
-   
-         </select>
-       </div>
-       <button type="submit" value="serchBook" class="btn margin searchBook col s4">Buscar</button>
-   </form></div>
+        <div class="nav-wrapper col s12 m3">
+          <div class="input-field">
+            <input
+              id="searchBooks"
+              type="search"
+              placeholder="Busca un Libro"
+            />
+            <label class="label-icon" for="search"
+              ><i class="material-icons teal-text">search</i></label
+            >
+            <i class="material-icons">close</i>
+          </div>
+        </div>
+        <div class="input-field col s6 m3">
+          <select class="orderPrice">
+            <option value="" disabled selected>orden de precios</option>
+            <option id="menorMayor" value="menorMayor">de menor a mayor</option>
+            <option id="mayorMenor" value="mayorMenor">de mayor a menor</option>
+          </select>
+        </div>
+        <div class="input-field col s6 m3">
+          <select class="typeBook">
+            <option value="" disabled selected>Categoria</option>
+            <option value="Thriller">Thriller</option>
+            <option value="Novela">Novela</option>
+            <option value="Infantil">Infantil</option>
+            <option value="Psicología">Psicología</option>
+            <option value="Autoayuda">Autoayuda</option>
+            <option value="Ciencia Ficción">Ciencia Ficción</option>
+            <option value="Todos">Todos</option>
+          </select>
+        </div>
+        <button
+          type="submit"
+          value="serchBook"
+          class="btn margin searchBook col s4 m3"
+        >
+          Buscar
+        </button>
+      </form>
+    </div>
     <ul class="sidenav" id="mobile-demo">
       <li>
         <a href="#">
@@ -84,18 +106,17 @@
           </form>
         </a>
       </li>
-      <li><a href="sass.html">Sass</a></li>
-      <li><a href="badges.html">Components</a></li>
-      <li><a href="collapsible.html">Javascript</a></li>
+      <li><a class="a-center" href="#">Home</a></li>
+      <li><a class="a-center" href="#">Libros</a></li>
     </ul>
 
     <main class="container main">
       <div class="row books">
         <div class="row col s12">
           <h2 class="center-align">Libros</h2>
-      
         </div>
-      <div class="holdBookCard col s12"></div>
+        <div class="holdBookCard col s12"></div>
+      </div>
     </main>
     <footer class="page-footer">
       <div class="container">
@@ -127,14 +148,12 @@
     <div class="cart">
       <ul class="collection">
         <li class="collection-item avatar book-added">
-          <img class="cricket"src="assets/img/grillo.png"><img>
-        <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
+          <img class="cricket" src="assets/img/grillo.png" /><img />
+          <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
         </li>
       </ul>
-    </div>    
+    </div>
     <script type="text/javascript" src="assets/js/materialize.min.js"></script>
     <script defer src="assets/js/services.js"></script>
   </body>
 </html>
-
-

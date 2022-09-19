@@ -3022,7 +3022,10 @@ nav {
     position: relative;
     height: 100%; }
     nav .nav-wrapper ul {
-      width: 40%; }
+      width: 50%; }
+  @media only screen and (min-width: 601px) {
+    nav .nav-wrapper ul {
+      width: 20%; } }
   @media only screen and (min-width: 993px) {
     nav a.sidenav-trigger {
       display: none; } }
@@ -3393,7 +3396,6 @@ small {
     .card .card-content p {
       margin: 0; }
     .card .card-content .card-title {
-      display: block;
       line-height: 32px;
       margin-bottom: 8px; }
       .card .card-content .card-title i {
@@ -6426,9 +6428,6 @@ nav {
   .main {
     margin-top: 8vh; } }
 
-.img-mirror {
-  transform: scaleX(-1); }
-
 img {
   object-fit: cover;
   object-position: center; }
@@ -6462,24 +6461,12 @@ img {
 .margin {
   margin: 1em; }
 
-.wrap-promise {
-  margin-top: 15vh;
-  margin-bottom: 15vh; }
+#searchBook {
+  flex-wrap: wrap; }
 
-.btn-card {
-  position: absolute;
-  right: 24px;
-  bottom: -20px; }
-
-.info {
-  margin-top: 2em; }
-
-.hover-p p {
-  transition: 1s; }
-
-.hover-p:hover p {
-  color: #000 !important;
-  transition: 2s; }
+@media only screen and (min-width: 601px) {
+  #searchBook {
+    flex-wrap: nowrap; } }
 
 .books {
   display: flex;
@@ -6487,32 +6474,37 @@ img {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap; }
-
-.holdBookCard {
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row; }
-
-.book {
-  width: calc(100% /2);
-  padding: 0.5em;
-  font-size: 12px; }
-  .book img {
-    height: 180px; }
-  .book .card-title {
-    font-size: 14px;
-    line-height: 1;
-    height: 50px;
-    font-weight: bold; }
-  .book .card-content {
+  .books .holdBookCard {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row; }
+    .books .holdBookCard .book {
+      width: calc(100% /2);
+      padding: 0.5em;
+      font-size: 12px; }
+      .books .holdBookCard .book img {
+        height: 180px; }
+  .books .card-content {
     height: 179px; }
+    .books .card-content .card-title {
+      font-size: 14px;
+      line-height: 1;
+      font-weight: bold;
+      height: 64px;
+      display: -webkit-box;
+      white-space: normal;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden; }
 
 @media only screen and (min-width: 601px) {
-  .book {
-    width: calc(100% / 3); } }
+  .books .holdBookCard .book {
+    width: calc(100% / 3); }
+    .books .holdBookCard .book img {
+      height: 280px; } }
 
 @media only screen and (min-width: 993px) {
-  .book {
+  .books .holdBookCard .book {
     width: calc(100% / 4); } }
 
 .arrow {
@@ -6524,18 +6516,25 @@ img {
   width: 20px; }
 
 .cart {
-  width: 25%;
+  width: 60%;
   position: fixed;
   bottom: 0px;
   right: 10px;
   z-index: 300;
   display: none; }
+  .cart .collection .collection-item .cricket {
+    width: 60px;
+    height: 60px;
+    float: right;
+    margin-left: 1em; }
 
-.cricket {
-  width: 60px;
-  height: 60px;
-  float: right;
-  margin-left: 1em; }
+@media only screen and (min-width: 601px) {
+  .cart {
+    width: 40%; } }
+
+@media only screen and (min-width: 993px) {
+  .cart {
+    width: 25%; } }
 
 .bg-login {
   background: url(../img/citrics.jpg);

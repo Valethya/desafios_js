@@ -1,5 +1,5 @@
 const books = [];
-const cart = [];
+let cart = [];
 class book {
   constructor(
     nombre,
@@ -247,17 +247,6 @@ function higherPrice(arr) {
   });
 }
 //
-function showHidden(selector, element) {
-  let boton = document.querySelector(selector);
-  boton.addEventListener("click", () => {
-    let div = document.querySelector(element);
-    if (div.style.display === "none") {
-      div.style.display = "block";
-    } else {
-      div.style.display = "none";
-    }
-  });
-}
 
 showHidden("#cart", ".cart");
 ///
@@ -277,9 +266,9 @@ const loadBook = (books) => {
     <div class="card-image">
     <img src=${book.img}>
     
-    <a id=${
+    <a  class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook" data-id=${
       book.id
-    } class="addBook btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons">add</i></a>
+    }>add</i></a>
     </div>
     <div class="card-content">
     <div class="title-card">
@@ -303,7 +292,6 @@ loadBook(books);
 const formBook = document.querySelector("#searchBook");
 
 const SearchBooks = () => {
-  debugger;
   //Variables de inputs
   let optionType = document.querySelector(".typeBook").value;
   let nameBook = document.querySelector("#searchBooks").value.toLowerCase();
@@ -377,9 +365,9 @@ const addBookCart = (cart) => {
       <p>Cantidad: ${book.quantity}<br>
       Precio: ${formatPrice(book.price)}
       </p>
-      <a href="#!" id=${
+      <a href="#!"  class="secondary-content "><i class="material-icons delete-book "  data-id=${
         book.id
-      }  class="secondary-content delet-book"><i class="material-icons ">delete_outline</i></a>
+      }>delete_outline</i></a>
           `;
     holdAddBook.appendChild(div);
   }
@@ -391,7 +379,6 @@ const totalbook = () => {
 };
 // agregar badge al icono de carrito
 const addBadge = () => {
-  debugger;
   let linkbad = document.querySelector("#cart");
   let badge = document.querySelector(".mi-badge");
   if (badge) {
@@ -399,88 +386,90 @@ const addBadge = () => {
     let sup = document.createElement("sup");
     sup.setAttribute("class", "red center mi-badge flex");
     sup.innerHTML = `
-          <p class="white-text badged"><b>${totalbook()}</b></p>
+          <p class="white-text counterBadged"><b>${totalbook()}</b></p>
                 `;
     linkbad.insertAdjacentElement("beforeend", sup);
   }
 };
-
+// cambiar el contador del badge o eliminar si el contador llega a 0
 const counterBadge = () => {
-  debugger;
-  let badged = document.querySelector(".mi-badge");
-  let sup = document.querySelector(".badged");
-  if (sup) {
-    badged.innerHTML = `<p class="white-text badged"><b>${totalbook()}</b></p>`;
+  let sup = document.querySelector(".mi-badge");
+  let badged = document.querySelector(".counterBadged");
+  if (totalbook() === 0) {
+    let cart = document.querySelector("#cart");
+    cart.removeChild(sup);
+  } else if (badged) {
+    sup.innerHTML = `<p class="white-text counterBadged"><b>${totalbook()}</b></p>`;
   }
 };
 
 /// agregar libro al carrito
-const addBook = () => {
-  btns = document.querySelectorAll(".addBook");
-  for (const btn of btns) {
-    btn.addEventListener("click", () => {
-      debugger;
-      let idBook = cart.find((book) => book.id == btn.id);
-      if (idBook) {
-        idBook.quantity++;
-      } else {
-        let book = books.find((book) => book.id == btn.id);
-        if (book) {
-          let newBook = {
-            img: book.img,
-            id: book.id,
-            name: book.name,
-            price: book.price,
-            quantity: 1,
-          };
-          cart.push(newBook);
-        }
-      }
-      addBookCart(cart);
-      addBadge();
-      counterBadge();
-    });
-  }
-};
 
-addBook();
+let holdBookCard = document.querySelector(".holdBookCard");
+
+holdBookCard.addEventListener("click", addBook);
+
+function addBook(e) {
+  if (e.target.classList.contains("addBook")) {
+    let idBtn = e.target.getAttribute("data-id");
+    idBook = cart.find((book) => book.id == idBtn);
+    if (idBook) {
+      idBook.quantity++;
+    } else {
+      let book = books.find((book) => book.id == idBtn);
+      if (book) {
+        let newBook = {
+          img: book.img,
+          id: book.id,
+          name: book.name,
+          price: book.price,
+          quantity: 1,
+        };
+        cart.push(newBook);
+      }
+    }
+    addBookCart(cart);
+    addBadge();
+    counterBadge();
+  }
+}
 
 //eliminar libro del carrito
-debugger;
+
 let lista = document.querySelector(".collection");
 let cartId = [];
 let id = cart.map(function (book) {
   cartId.push(book.id);
 });
 
-const deleteBook = () => {
-  let btns = document.querySelectorAll(".delet-book");
-  for (const btn of btns) {
-    btn.addEventListener("click", () => {
-      debugger;
-      let idBook = cart.find((book) => book.id == btn.id);
+let collection = document.querySelector(".collection");
 
-      if (idBook.quantity === 1) {
-        let index = cartId.indexOf(idBook.id);
-        cart.splice(index);
-      } else if (idBook) {
-        idBook.quantity--;
-      }
-      addBookCart(cart);
-      addBadge();
-      counterBadge();
-      if (lista.children.length == 0) {
-        let holdAddBook = document.querySelector(".collection");
-        let div = document.createElement("li");
-        div.setAttribute("class", "collection-item avatar book-added");
-        div.innerHTML = `
-          <img class="cricket"src="assets/img/grillo.png"><img>
-        <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
-      `;
-        holdAddBook.appendChild(div);
-      }
-    });
+collection.addEventListener("click", deleteBook);
+
+function deleteBook(e) {
+  debugger;
+  if (e.target.classList.contains("delete-book")) {
+    let idBook = e.target.getAttribute("data-id");
+    console.log(idBook);
+    idBook = cart.find((book) => book.id == idBook);
+
+    if (idBook.quantity === 1) {
+      cart = cart.filter((book) => book.id !== idBook.id);
+    } else if (idBook) {
+      idBook.quantity--;
+    }
+    addBookCart(cart);
+    addBadge();
+    counterBadge();
+    if (lista.children.length == 0) {
+      let holdAddBook = document.querySelector(".collection");
+      let div = document.createElement("li");
+      div.setAttribute("class", "collection-item avatar book-added");
+      div.innerHTML = `
+        <img class="cricket"src="assets/img/grillo.png"><img>
+      <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
+    `;
+      holdAddBook.appendChild(div);
+    }
   }
-};
-
-deleteBook();
+}
