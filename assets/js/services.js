@@ -359,7 +359,7 @@ const addBookCart = (cart) => {
   }
   createBookInCart(cart, holdAddBook);
 };
-
+//crea el html del libro
 const createBookInCart = (cart, holdAddBook) => {
   for (const book of cart) {
     let div = document.createElement("li");
@@ -379,16 +379,16 @@ const createBookInCart = (cart, holdAddBook) => {
   }
 };
 
-/// agregar cantidad de libro al carrito
+/// agregar libro al carrito
 
 let holdBookCard = document.querySelector(".holdBookCard");
-
+//escuchando evento para agregar libro
 holdBookCard.addEventListener("click", addBook);
 
 //si el libro ya esta en el array cart solo se suman mas a la cantidad
 const sumQuantityOfBooks = (idBook) => {
   if (idBook.quantity == idBook.availability) {
-    alert("no puedes agregar mas libros");
+    alert("no tenemos mas unidades :( ");
   } else {
     idBook.quantity++;
   }
@@ -415,6 +415,7 @@ function addBook(e) {
     addBookCart(cart);
     addfinalpriceCart();
     addCounter();
+    saveInLocalStorage();
   }
 }
 
@@ -425,13 +426,14 @@ const totalbook = () => {
   return sum;
 };
 
+//precio total del carrito
 const finalPriceCart = () => {
   const finalPrice = cart
     .map((book) => parseInt(book.price * book.quantity))
     .reduce((a, b) => a + b, 0);
   return finalPrice;
 };
-
+// agregar al html el valor total del carrito
 const addfinalpriceCart = () => {
   debugger;
   let container = document.querySelector(".collection");
@@ -510,4 +512,22 @@ const deleteLastBook = () => {
     holdAddBook.appendChild(div);
     showHidden(".cart", "flex");
   }
+  saveInLocalStorage();
 };
+
+// iformacion a guardar en el local storage localStorage
+
+const saveInLocalStorage = () => {
+  localStorage.setItem("cart", JSON.stringify(cart));
+};
+
+const recoveryLocalStorage = () => {
+  if (localStorage.getItem("cart")) {
+    cart = JSON.parse(localStorage.getItem("cart"));
+  }
+  addBookCart(cart);
+  addfinalpriceCart();
+  addCounter();
+};
+
+recoveryLocalStorage();
