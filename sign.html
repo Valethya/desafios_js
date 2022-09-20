@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@300&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      type="text/css"
+      rel="stylesheet"
+      href="assets/css/main.css"
+      media="screen,projection"
+    />
+  </head>
+  <body class="bg-login">
+    <main class="justify-center">
+      <div class="card-sign grey z-depth-5 lighten-5 cont-login">
+        <div class="row justify-center">
+          <i class="material-icons large">account_circle</i>
+        </div>
+        <div class="row justify-center">
+          <form name="form-sign" id="newUser" class="col s10">
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="first_name" type="text" class="validate" />
+                <label for="first_name">Tu Nombre</label>
+                <span
+                  class="helper-text"
+                  data-error="ingrese su nombre porfavor"
+                  data-success=""
+                ></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" class="validate" />
+                <label for="email">Email</label>
+                <span
+                  class="helper-text"
+                  data-error="Formato del email incorrecto"
+                  data-success="Formato del email correcto"
+                ></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password" type="password" class="validate" />
+                <label for="password" class="">Contraseña</label>
+                <span
+                  class="helper-text"
+                  data-error="contraseña debe coincidir"
+                  data-success=""
+                ></span>
+              </div>
+            </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="password-confirm" type="password" class="validate" />
+                <label for="password-confirm" class=""
+                  >Confirmar contraseña</label
+                >
+                <span
+                  class="helper-text"
+                  data-error="contraseña debe coincidir"
+                  data-success="la contraña coincide"
+                ></span>
+              </div>
+            </div>
+            <button
+              class="btn waves-effect waves-light btn-form"
+              type="submit"
+              name="action"
+            >
+              Submit
+            </button>
+
+            <p>
+              <label>
+                <input type="checkbox" />
+                <span>Recordar contraseña</span>
+              </label>
+            </p>
+          </form>
+        </div>
+      </div>
+    </main>
+
+    <script
+      defer
+      type="text/javascript"
+      src="assets/js/materialize.min.js"
+    ></script>
+    <script defer src="assets/js/users.js"></script>
+    <script defer src="assets/js/index.js"></script>
+    <script defer src="assets/js/sign.js"></script>
+
+    <!-- <script defer src="assets/js/services.js"></script> -->
+  </body>
+</html>

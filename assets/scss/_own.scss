@@ -8,6 +8,13 @@ nav{
     li{
         height: 100%;
     }
+    .dropdown-content{
+        height: auto;
+        overflow-y: hidden;
+        li{
+            height: 50%;
+        }
+    }
     .a-center{
         height: 100%;
         display: flex;
@@ -159,6 +166,12 @@ flex-wrap: wrap;
     height: 20px;
     width: 20px;
 }
+#cart{
+    
+    .bell{
+        font-size: 130%;
+    }
+}
 .cart{
     width: 60%;
     position: fixed;
@@ -211,17 +224,19 @@ flex-wrap: wrap;
 
  ///estilos login 
 .bg-login{
-    background: url(../img/citrics.jpg);
-    background-size: cover;
-    background-position: bottom;
     min-height: 100vh;
+    .card-sign{
+        .warn{
+            font-weight: bold;
+        }
+    }
 }
+
 .cont-login{
-    display: none;
-margin-top: 3em;
-margin-bottom: 3em;
-width: 40%;
-padding: 2em;
+    display: block;
+    margin-top: 3em;
+    margin-bottom: 3em;
+    padding: 2em;
 .span-pass{
     font-size: 75%;
     margin-top: 2em;
@@ -233,6 +248,12 @@ padding: 2em;
 }
 .btn-form{
     width: 100%;
+}
+}
+@media #{$large-and-up} {
+    .cont-login{
+    width: 40%;
+   
 }
 }
 

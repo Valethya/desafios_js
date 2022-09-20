@@ -1,4 +1,7 @@
 nav {
+  position: sticky;
+  top: 0;//valentina
+  z-index: 1000;
   &.nav-extended {
     height: auto;
 

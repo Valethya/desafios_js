@@ -2065,7 +2065,7 @@ blockquote {
 
 i {
   line-height: inherit;
-  color: #d4d4d4; }
+  color: #757575; }
   i.left {
     float: left;
     margin-right: 15px; }
@@ -2996,6 +2996,9 @@ table span.badge {
         left: 100%; } }
 
 nav {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
   color: #212121;
   background-color: #fafafa;
   width: 100%;
@@ -6402,6 +6405,11 @@ nav {
     height: 100%; }
     nav ul li {
       height: 100%; }
+    nav ul .dropdown-content {
+      height: auto;
+      overflow-y: hidden; }
+      nav ul .dropdown-content li {
+        height: 50%; }
     nav ul .a-center, nav ul .a-center-column {
       height: 100%;
       display: flex;
@@ -6493,7 +6501,7 @@ img {
       height: 64px;
       display: -webkit-box;
       white-space: normal;
-      -webkit-line-clamp: 2;
+      -webkit-line-clamp: 3;
       -webkit-box-orient: vertical;
       overflow: hidden; }
 
@@ -6514,6 +6522,9 @@ img {
   border-radius: 50%;
   height: 20px;
   width: 20px; }
+
+#cart .bell {
+  font-size: 130%; }
 
 .cart {
   width: 60%;
@@ -6552,16 +6563,14 @@ img {
     width: 25%; } }
 
 .bg-login {
-  background: url(../img/citrics.jpg);
-  background-size: cover;
-  background-position: bottom;
   min-height: 100vh; }
+  .bg-login .card-sign .warn {
+    font-weight: bold; }
 
 .cont-login {
-  display: none;
+  display: block;
   margin-top: 3em;
   margin-bottom: 3em;
-  width: 40%;
   padding: 2em; }
   .cont-login .span-pass {
     font-size: 75%;
@@ -6572,6 +6581,10 @@ img {
       color: #000100; }
   .cont-login .btn-form {
     width: 100%; }
+
+@media only screen and (min-width: 993px) {
+  .cont-login {
+    width: 40%; } }
 
 .holdFriend {
   min-height: 75vh;
