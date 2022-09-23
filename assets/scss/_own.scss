@@ -279,3 +279,66 @@ flex-wrap: wrap;
     transition: 3s;
 }
 ///form
+ 
+//admin
+///tabla
+.containerTable{
+    width: 80%;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    table{
+        background: #fff;
+        th{
+            text-align: center;
+            .imgTable{
+                height:15vh;
+            }
+            input[type=number]::-webkit-inner-spin-button,
+            input[type=number]::-webkit-outer-spin-button {
+                -webkit-appearance: none;
+                margin: 0;
+            }
+            input[type=number] { -moz-appearance:textfield; }
+            .quantity {
+                width: 60%;
+                &:disabled{
+                    color: rgb(80, 79, 79);
+                    font-weight: bold;
+                }
+            }
+            .price{
+                &:disabled{
+                    color: rgb(80, 79, 79);
+                    font-weight: bold;
+                }
+            }
+        }
+    }
+}
+
+@media #{$medium-and-up} {
+    .containerTable{
+        width: 60%;
+        margin-top: 6vh;
+        margin-bottom: 6vh;
+        table{
+            background: #fff;
+            th{
+                text-align: center;
+            }
+        }
+    }
+}
+@media #{$large-and-up} {
+    .containerTable{
+        width: 60%;
+        margin-top: 8vh;
+        margin-bottom: 8vh;
+        table{
+            background: #fff;
+            th{
+                text-align: center;
+            }
+        }
+    }
+}

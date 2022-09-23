@@ -30,13 +30,12 @@ const login = () => {
     e.preventDefault();
     let email = document.querySelector("#emailLogin").value.toLowerCase();
     let password = document.querySelector("#passwordLogin").value;
-    if (
-      usuarios.find(
-        (user) => user.email === email && user.password === password
-      )
-    ) {
+    let userLog = usuarios.find(
+      (user) => user.email === email && user.password === password
+    );
+    if (userLog) {
       alert("has logrado acceder exitosamente");
-      window.location.replace("index.html");
+      window.location.replace(userLog.page);
     } else {
       if (usuarios.find((user) => user.email === email)) {
         //valid email
