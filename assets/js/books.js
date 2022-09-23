@@ -1,5 +1,5 @@
 const books = [];
-let cart = []; //no es una contante por que de momento no se como eliminar un producto del carro. solo puedo filtrarlo.
+const cart = []; //no es una contante por que de momento no se como eliminar un producto del carro. solo puedo filtrarlo.
 class book {
   constructor(
     nombre,
@@ -415,7 +415,7 @@ function addBook(e) {
     addBookCart(cart);
     addfinalpriceCart();
     addCounter();
-    saveInLocalStorage();
+    saveInLocalStorage("cart", cart);
   }
 }
 
@@ -488,7 +488,9 @@ function deleteBook(e) {
     idBook = cart.find((book) => book.id == idBook);
 
     if (idBook.quantity === 1) {
-      cart = cart.filter((book) => book.id !== idBook.id);
+      let book = cart.find((book) => book.id == idBook.id);
+      let index = cart.indexOf(book);
+      cart.splice(index, 1);
     } else if (idBook) {
       idBook.quantity--;
     }
@@ -512,18 +514,17 @@ const deleteLastBook = () => {
     holdAddBook.appendChild(div);
     showHidden(".cart", "flex");
   }
-  saveInLocalStorage();
+  saveInLocalStorage("cart", cart);
 };
 
 // iformacion a guardar en el local storage localStorage
 
-const saveInLocalStorage = () => {
-  localStorage.setItem("cart", JSON.stringify(cart));
-};
-
 const recoveryLocalStorage = () => {
   if (localStorage.getItem("cart")) {
-    cart = JSON.parse(localStorage.getItem("cart"));
+    let recoveryCart = JSON.parse(localStorage.getItem("cart"));
+    recoveryCart.forEach((book) => {
+      cart.push(book);
+    });
   }
   addBookCart(cart);
   addfinalpriceCart();

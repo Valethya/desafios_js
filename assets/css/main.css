@@ -5372,7 +5372,7 @@ input[type=range]::-ms-thumb {
   height: -moz-calc(100%);
   padding-bottom: 60px;
   background-color: #fff;
-  z-index: 999;
+  z-index: 1000;
   overflow-y: auto;
   will-change: transform;
   backface-visibility: hidden;
@@ -6566,6 +6566,17 @@ img {
   min-height: 100vh; }
   .bg-login .card-sign .warn {
     font-weight: bold; }
+  .bg-login .recoveryPass {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #fff;
+    height: 40%;
+    width: 50%;
+    padding: 2em; }
+    .bg-login .recoveryPass form div {
+      width: 80%; }
 
 .cont-login {
   display: block;

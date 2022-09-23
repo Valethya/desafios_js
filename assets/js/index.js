@@ -20,7 +20,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 ///////mi codigo///
 
-// show or hidden elements
+// agregar o remover una clase
 
 function addClass(element, theClass) {
   let ele = document.querySelector(element);
@@ -30,6 +30,8 @@ function removeClass(element, theClass) {
   let ele = document.querySelector(element);
   ele.classList.remove(theClass);
 }
+
+//mostrar u ocultar elementos
 function listenerShowHidden(selector, element, display) {
   let boton = document.querySelector(selector);
   boton.addEventListener("click", () => {
@@ -43,4 +45,8 @@ const showHidden = (element, display) => {
   } else {
     div.style.display = "none";
   }
+};
+
+const saveInLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
 };
