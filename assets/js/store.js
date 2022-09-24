@@ -42,8 +42,6 @@ const loadBook = (books) => {
       </div>
   </div>
           `;
-    if (element) {
-    }
     container.appendChild(div);
   }
 };
@@ -87,7 +85,7 @@ const createBookInCart = (cart, holdAddBook) => {
         <span class="title teal-text"><b>${book.name}</b></span>
         <p>Cantidad: ${book.quantity}<br>
         Precio: ${formatPrice(book.price)}<br>
-        total:<b>${formatPrice(parseInt(book.price * book.quantity))}</b>
+        total:<b>${formatPrice(book.price * book.quantity)}</b>
         </p>
         <a href="#!"  class="secondary-content "><i class="material-icons delete-book "  data-id=${
           book.id
@@ -105,11 +103,9 @@ holdBookCard.addEventListener("click", addBook);
 
 //si el libro ya esta en el array cart solo se suman mas a la cantidad
 const sumQuantityOfBooks = (idBook) => {
-  if (idBook.quantity == idBook.availability) {
-    alert("no tenemos mas unidades :( ");
-  } else {
-    idBook.quantity++;
-  }
+  idBook.quantity == idBook.availability
+    ? alert("no tenemos mas unidades :( ")
+    : idBook.quantity++;
 };
 
 // si el libro no esta en el array cart se agrega al array
@@ -125,11 +121,9 @@ function addBook(e) {
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
     let idBook = cart.find((book) => book.id == idBtn);
-    if (idBook) {
-      sumQuantityOfBooks(idBook);
-    } else {
-      addBookArrayCart(idBtn);
-    }
+
+    idBook ? sumQuantityOfBooks(idBook) : addBookArrayCart(idBtn);
+
     addBookCart(cart);
     addfinalpriceCart();
     addCounter();
@@ -147,7 +141,7 @@ const totalbook = () => {
 //precio total del carrito
 const finalPriceCart = () => {
   const finalPrice = cart
-    .map((book) => parseInt(book.price * book.quantity))
+    .map((book) => book.price * book.quantity)
     .reduce((a, b) => a + b, 0);
   return finalPrice;
 };
@@ -174,7 +168,7 @@ const addCounter = () => {
     let sup = document.createElement("sup");
     sup.setAttribute("class", "red center mi-counter flex");
     sup.innerHTML = `
-            <p class="white-text counter"><b>${totalbook()}</b></p>
+            <p class="white-text"><b class="counter">${totalbook()}</b></p>
                   `;
     linkbad.insertAdjacentElement("beforeend", sup);
   }
@@ -184,12 +178,10 @@ const addCounter = () => {
 const changeCounter = () => {
   let sup = document.querySelector(".mi-counter");
   let counter = document.querySelector(".counter");
-  if (totalbook() === 0) {
-    let cart = document.querySelector("#cart");
-    cart.removeChild(sup);
-  } else if (counter) {
-    sup.innerHTML = `<p class="white-text counter"><b>${totalbook()}</b></p>`;
-  }
+  let cart = document.querySelector("#cart");
+  totalbook() === 0
+    ? cart.removeChild(sup)
+    : (counter.innerText = `${totalbook()}`);
 };
 
 //eliminar libro del carrito
