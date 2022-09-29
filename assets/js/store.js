@@ -285,7 +285,7 @@ const publicityLastBookRemove = () => {
     imageUrl: publicity[0].img,
     title: publicity[0].name,
     text: `precio: ${formatPrice(publicity[0].price)}`,
-    // timer: 7000,
+    timer: 7000,
     backdrop: false,
     position: "bottom-end",
     timerProgressBar: true,

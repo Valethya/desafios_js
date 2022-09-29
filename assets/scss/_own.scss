@@ -236,6 +236,9 @@ flex-wrap: wrap;
     .swal2-confirm{
         background-color: color("lime", "lighten-1");
         font-weight: bold;
+        &:focus{
+            box-shadow: 0 0 5px 2px rgb(112 102 224 / 50%);
+        }
     }
     .swal2-cancel{
         background-color: $primary-color-dark;
