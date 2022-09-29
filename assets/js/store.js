@@ -12,6 +12,7 @@ const formatPrice = (price) => {
 listenerShowHidden("#cart", ".cart", "flex");
 listenerShowHidden("#remove", ".cart", "flex");
 ///
+
 //load books: load the books to the pages
 
 const loadBook = (books) => {
@@ -67,6 +68,7 @@ formBook.addEventListener("keyup", (e) => {
 ///carrito de compras
 
 ///agregar producto
+
 const addBookCart = (cart) => {
   let holdAddBook = document.querySelector(".collection");
   let bookAdded = document.querySelector(".book-added");
@@ -75,7 +77,9 @@ const addBookCart = (cart) => {
   }
   createBookInCart(cart, holdAddBook);
 };
+
 //crea el html del libro
+
 const createBookInCart = (cart, holdAddBook) => {
   for (const book of cart) {
     let div = document.createElement("li");
@@ -98,10 +102,13 @@ const createBookInCart = (cart, holdAddBook) => {
 /// agregar libro al carrito
 
 let holdBookCard = document.querySelector(".holdBookCard");
+
 //escuchando evento para agregar libro
+
 holdBookCard.addEventListener("click", addBook);
 
 //si el libro ya esta en el array cart solo se suman mas a la cantidad
+
 const sumQuantityOfBooks = (idBook) => {
   idBook.quantity == idBook.availability
     ? alert("no tenemos mas unidades :( ")
@@ -109,6 +116,7 @@ const sumQuantityOfBooks = (idBook) => {
 };
 
 // si el libro no esta en el array cart se agrega al array
+
 const addBookArrayCart = (idBtn) => {
   let book = books.find((book) => book.id == idBtn);
   if (book) {
@@ -116,7 +124,9 @@ const addBookArrayCart = (idBtn) => {
     cart.push(book);
   }
 };
+
 //escucha de btns para agregar libro al carrito
+
 function addBook(e) {
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
@@ -139,13 +149,16 @@ const totalbook = () => {
 };
 
 //precio total del carrito
+
 const finalPriceCart = () => {
   const finalPrice = cart
     .map((book) => book.price * book.quantity)
     .reduce((a, b) => a + b, 0);
   return finalPrice;
 };
+
 // agregar al html el valor total del carrito
+
 const addfinalpriceCart = () => {
   debugger;
   let container = document.querySelector(".collection");
@@ -174,7 +187,9 @@ const addCounter = () => {
   }
   changeCounter();
 };
+
 // cambiar el contador del counter o eliminar si el contador llega a 0
+
 const changeCounter = () => {
   let sup = document.querySelector(".mi-counter");
   let counter = document.querySelector(".counter");
@@ -191,6 +206,7 @@ let collection = document.querySelector(".collection");
 collection.addEventListener("click", deleteBook);
 
 //eliminar cantidad de libros o el libro mismo del carrito
+
 function deleteBook(e) {
   let idBook;
   if (e.target.classList.contains("delete-book")) {
@@ -210,7 +226,9 @@ function deleteBook(e) {
   addfinalpriceCart();
   deleteLastBook();
 }
+
 //eliminar ultimo libro del carrito
+
 const deleteLastBook = () => {
   if (collection.children.length == 1) {
     let holdAddBook = document.querySelector(".collection");
@@ -227,7 +245,13 @@ const deleteLastBook = () => {
   saveInLocalStorage("cart", cart);
 };
 
-// iformacion a guardar en el local storage localStorage
+// guardar en el local storage
+
+const saveInLocalStorage = (key, value) => {
+  localStorage.setItem(key, JSON.stringify(value));
+};
+
+// recuperar del local storage
 
 const recoveryLocalStorage = () => {
   if (localStorage.getItem("cart")) {

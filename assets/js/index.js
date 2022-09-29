@@ -46,7 +46,3 @@ const showHidden = (element, display) => {
     div.style.display = "none";
   }
 };
-
-const saveInLocalStorage = (key, value) => {
-  localStorage.setItem(key, JSON.stringify(value));
-};

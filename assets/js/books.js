@@ -68,7 +68,7 @@ let book4 = new book(
   "assets/img/silence-lamb.jpg",
   "Thomas Harris",
   "Debolsillo",
-  "8497599365",
+  8497599365,
   "4"
 );
 
@@ -253,13 +253,16 @@ const SearchBooks = (funcioncargar) => {
   }
 
   //filtrar por nombre
-
-  let booksFound = books.filter((book) =>
-    book.name.toLowerCase().match(nameBook)
+  debugger;
+  let booksFound = books.filter(
+    (book) =>
+      book.name.toLowerCase().match(nameBook) ||
+      book.author.toLowerCase().match(nameBook) ||
+      book.editorial.toLowerCase().match(nameBook)
   );
 
   //name is filtered by category
-  // if (booksFound != books) {
+
   if (optionType == "") {
     funcioncargar(booksFound);
   } else if (optionType == "Todos") {
@@ -268,7 +271,7 @@ const SearchBooks = (funcioncargar) => {
     let booksFoundType = booksFound.filter((book) => book.type === optionType);
     funcioncargar(booksFoundType);
   }
-  //}
+
   //filtrar solo categoria si no hay nombre
   if (booksFound == books && optionType == "Todos") {
     funcioncargar(books);
