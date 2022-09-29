@@ -128,6 +128,7 @@ const addBookArrayCart = (idBtn) => {
 //escucha de btns para agregar libro al carrito
 
 function addBook(e) {
+  debugger;
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
     let idBook = cart.find((book) => book.id == idBtn);
@@ -160,7 +161,6 @@ const finalPriceCart = () => {
 // agregar al html el valor total del carrito
 
 const addfinalpriceCart = () => {
-  debugger;
   let container = document.querySelector(".collection");
   let div = document.createElement("li");
   div.setAttribute("class", "collection-item bottom total-price");
@@ -208,12 +208,14 @@ collection.addEventListener("click", deleteBook);
 //eliminar cantidad de libros o el libro mismo del carrito
 
 function deleteBook(e) {
+  debugger;
   let idBook;
   if (e.target.classList.contains("delete-book")) {
     idBook = e.target.getAttribute("data-id");
     console.log(idBook);
     idBook = cart.find((book) => book.id == idBook);
   }
+  saveInLocalStorage("remove", idBook);
   if (idBook.quantity === 1) {
     let book = cart.find((book) => book.id == idBook.id);
     let index = cart.indexOf(book);
@@ -260,9 +262,50 @@ const recoveryLocalStorage = () => {
       cart.push(book);
     });
   }
-  addBookCart(cart);
-  addfinalpriceCart();
-  addCounter();
+  if (cart.length > 0) {
+    addBookCart(cart);
+    addfinalpriceCart();
+    addCounter();
+  }
 };
 
 recoveryLocalStorage();
+
+///
+const publicity = [];
+const recoveryRemoveLocalStorage = () => {
+  if (localStorage.getItem("remove")) {
+    let recoveryRemove = JSON.parse(localStorage.getItem("remove"));
+    publicity.push(recoveryRemove);
+  }
+};
+
+const publicityLastBookRemove = () => {
+  Swal.fire({
+    imageUrl: publicity[0].img,
+    title: publicity[0].name,
+    text: `precio: ${formatPrice(publicity[0].price)}`,
+    // timer: 7000,
+    backdrop: false,
+    position: "bottom-end",
+    timerProgressBar: true,
+    showDenyButton: false,
+    showConfirmButton: true,
+    showCancelButton: true,
+    confirmButtonText: "agregar al carrito",
+  }).then((result) => {
+    debugger;
+    if (result.isConfirmed) {
+      idBtn = publicity[0].id;
+      let idBook = cart.find((book) => book.id == idBtn);
+      idBook ? sumQuantityOfBooks(idBook) : addBookArrayCart(idBtn);
+      addBookCart(cart);
+      addfinalpriceCart();
+      addCounter();
+      saveInLocalStorage("cart", cart);
+    }
+  });
+};
+
+recoveryRemoveLocalStorage();
+publicityLastBookRemove();

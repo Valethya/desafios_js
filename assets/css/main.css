@@ -6562,86 +6562,18 @@ img {
   .cart {
     width: 25%; } }
 
-.bg-login {
-  min-height: 100vh; }
-  .bg-login .card-sign .warn {
+.swal2-container .select-wrapper {
+  display: none !important; }
+
+.swal2-container .swal2-popup {
+  width: auto;
+  padding: 1em; }
+  .swal2-container .swal2-popup .swal2-title {
+    font-size: 20px;
+    color: #009a80; }
+  .swal2-container .swal2-popup .swal2-confirm {
+    background-color: #d4e157;
     font-weight: bold; }
-  .bg-login .recoveryPass {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    background: #fff;
-    height: 40%;
-    width: 50%;
-    padding: 2em; }
-    .bg-login .recoveryPass form div {
-      width: 80%; }
-
-.cont-login {
-  display: block;
-  margin-top: 3em;
-  margin-bottom: 3em;
-  padding: 2em; }
-  .cont-login .span-pass {
-    font-size: 75%;
-    margin-top: 2em;
-    display: flex;
-    align-items: center; }
-    .cont-login .span-pass:hover i {
-      color: #000100; }
-  .cont-login .btn-form {
-    width: 100%; }
-
-@media only screen and (min-width: 993px) {
-  .cont-login {
-    width: 40%; } }
-
-.holdFriend {
-  min-height: 75vh;
-  transition: 3s; }
-
-.containerTable {
-  width: 80%;
-  margin-top: 3vh;
-  margin-bottom: 3vh; }
-  .containerTable table {
-    background: #fff; }
-    .containerTable table th {
-      text-align: center; }
-      .containerTable table th .imgTable {
-        height: 15vh; }
-      .containerTable table th input[type=number]::-webkit-inner-spin-button,
-      .containerTable table th input[type=number]::-webkit-outer-spin-button {
-        -webkit-appearance: none;
-        margin: 0; }
-      .containerTable table th input[type=number] {
-        -moz-appearance: textfield; }
-      .containerTable table th .quantity {
-        width: 60%; }
-        .containerTable table th .quantity:disabled {
-          color: #504f4f;
-          font-weight: bold; }
-      .containerTable table th .price:disabled {
-        color: #504f4f;
-        font-weight: bold; }
-
-@media only screen and (min-width: 601px) {
-  .containerTable {
-    width: 60%;
-    margin-top: 6vh;
-    margin-bottom: 6vh; }
-    .containerTable table {
-      background: #fff; }
-      .containerTable table th {
-        text-align: center; } }
-
-@media only screen and (min-width: 993px) {
-  .containerTable {
-    width: 60%;
-    margin-top: 8vh;
-    margin-bottom: 8vh; }
-    .containerTable table {
-      background: #fff; }
-      .containerTable table th {
-        text-align: center; } }
+  .swal2-container .swal2-popup .swal2-cancel {
+    background-color: #d4d4d4;
+    font-weight: bold; }
