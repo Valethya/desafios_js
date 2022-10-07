@@ -6469,6 +6469,9 @@ img {
 .margin {
   margin: 1em; }
 
+.visibility {
+  visibility: hidden; }
+
 #searchBook {
   flex-wrap: wrap; }
 
@@ -6566,14 +6569,46 @@ img {
   display: none !important; }
 
 .swal2-container .swal2-popup {
-  width: auto;
-  padding: 1em; }
+  width: 15em;
+  padding: 1.5em; }
   .swal2-container .swal2-popup .swal2-title {
-    font-size: 20px;
+    font-size: 14px;
     color: #009a80; }
   .swal2-container .swal2-popup .swal2-confirm {
     background-color: #d4e157;
-    font-weight: bold; }
+    font-weight: bold;
+    width: 100%; }
   .swal2-container .swal2-popup .swal2-cancel {
     background-color: #d4d4d4;
-    font-weight: bold; }
+    font-weight: bold;
+    width: 100%; }
+  .swal2-container .swal2-popup .swal2-image {
+    margin: auto; }
+
+.ups {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #00796b;
+  width: 90%;
+  height: 30%;
+  margin: auto;
+  margin-bottom: 5em;
+  padding: 1em; }
+  .ups img {
+    width: 30%; }
+  .ups span {
+    color: #fff;
+    font-weight: bold;
+    font-size: 4em; }
+  .ups p {
+    color: #fff; }
+
+@media only screen and (min-width: 601px) {
+  .ups {
+    width: 50%; }
+    .ups img {
+      width: 30%; }
+    .ups span {
+      font-size: 6em; } }

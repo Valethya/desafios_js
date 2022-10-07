@@ -1,3 +1,6 @@
+///variables html
+let container = document.querySelector(".holdBookCard");
+
 // formateo de precios
 
 const formatPrice = (price) => {
@@ -16,37 +19,55 @@ listenerShowHidden("#remove", ".cart", "flex");
 //load books: load the books to the pages
 
 const loadBook = (books) => {
-  let container = document.querySelector(".holdBookCard");
   let element = document.querySelector(".book");
   if (element) {
     container.innerHTML = "";
   }
-  for (const book of books) {
-    let div = document.createElement("div");
-    div.setAttribute("class", " book");
-    div.innerHTML = `
-      <div class="card hoverable">
+  books.forEach((book) => {
+    container.innerHTML += `
+    <div class="book">
+    <div class="card hoverable">
       <div class="card-image">
-      <img src=${book.img}>
-      
-      <a  class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook" data-id=${
-        book.id
-      }>add</i></a>
+        <img src=${book.img}>
+    
+        <a class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook"
+            data-id=${book.id}>add</i></a>
       </div>
       <div class="card-content">
-      <div class="title-card">
+        <div class="title-card">
           <span class="card-title">${book.name}</span>
-          </div>
-          <p>${book.author}</p>
-          <p>${book.editorial}</p>
-          <p class="teal-text"><b>${formatPrice(book.price)}<b></p>
+        </div>
+        <p>${book.author}</p>
+        <p>${book.editorial}</p>
+        <p class="teal-text"><b>${formatPrice(book.price)}</b></p>
       </div>
+    </div>
   </div>
-          `;
-    container.appendChild(div);
+  `;
+  });
+};
+///no cargan los productos
+const noLoadBooks = () => {
+  container.innerHTML += `
+  <div class="ups z-depth-5 col s10">
+  <span>Uuuups</span>
+  <img src="assets/img/grillo.png" alt="grillo">
+  <p class="center-align">tenemos problemas al cargar los productos</p>
+</div>
+`;
+};
+////
+
+const loadContent = async () => {
+  try {
+    await arrBooks();
+    removeClass(".visibility", "visibility");
+    loadBook(books);
+  } catch (error) {
+    noLoadBooks();
   }
 };
-loadBook(books);
+loadContent();
 
 ///search book
 
@@ -54,7 +75,6 @@ const formBook = document.querySelector("#searchBook");
 
 formBook.addEventListener("submit", (e) => {
   e.preventDefault();
-
   SearchBooks(loadBook);
 });
 
@@ -81,22 +101,20 @@ const addBookCart = (cart) => {
 //crea el html del libro
 
 const createBookInCart = (cart, holdAddBook) => {
-  for (const book of cart) {
-    let div = document.createElement("li");
-    div.setAttribute("class", "collection-item avatar book-added");
-    div.innerHTML = `
-        <img src=${book.img} class="circle">
-        <span class="title teal-text"><b>${book.name}</b></span>
-        <p>Cantidad: ${book.quantity}<br>
-        Precio: ${formatPrice(book.price)}<br>
-        total:<b>${formatPrice(book.price * book.quantity)}</b>
-        </p>
-        <a href="#!"  class="secondary-content "><i class="material-icons delete-book "  data-id=${
-          book.id
-        }>delete_outline</i></a>
-            `;
-    holdAddBook.appendChild(div);
-  }
+  cart.forEach((book) => {
+    holdAddBook.innerHTML += `
+    <div class="collection-item avatar book-added">
+  <img src=${book.img} class="circle">
+  <span class="title teal-text"><b>${book.name}</b></span>
+  <p>Cantidad: ${book.quantity}<br>
+    Precio: ${formatPrice(book.price)}<br>
+    total:<b>${formatPrice(book.price * book.quantity)}</b>
+  </p>
+  <a href="#!" class="secondary-content "><i class="material-icons delete-book "
+      data-id=${book.id}>delete_outline</i></a>
+</div>
+`;
+  });
 };
 
 /// agregar libro al carrito
@@ -120,15 +138,18 @@ const sumQuantityOfBooks = (idBook) => {
 const addBookArrayCart = (idBtn) => {
   let book = books.find((book) => book.id == idBtn);
   if (book) {
-    book.quantity = 1;
-    cart.push(book);
+    let cartBook = {
+      ...book,
+      quantity: 1,
+    };
+
+    cart.push(cartBook);
   }
 };
 
 //escucha de btns para agregar libro al carrito
 
 function addBook(e) {
-  debugger;
   if (e.target.classList.contains("addBook")) {
     let idBtn = e.target.getAttribute("data-id");
     let idBook = cart.find((book) => book.id == idBtn);
@@ -208,7 +229,6 @@ collection.addEventListener("click", deleteBook);
 //eliminar cantidad de libros o el libro mismo del carrito
 
 function deleteBook(e) {
-  debugger;
   let idBook;
   if (e.target.classList.contains("delete-book")) {
     idBook = e.target.getAttribute("data-id");
@@ -271,30 +291,29 @@ const recoveryLocalStorage = () => {
 
 recoveryLocalStorage();
 
-///
+///publicidad
+/// se guarda en el local storage los libros eliminados del carrito
 const publicity = [];
 const recoveryRemoveLocalStorage = () => {
   if (localStorage.getItem("remove")) {
     let recoveryRemove = JSON.parse(localStorage.getItem("remove"));
+    publicity.pop();
     publicity.push(recoveryRemove);
   }
 };
-
+////// muestra el ultimo libro borrado del carrito en la sesion anterior
 const publicityLastBookRemove = () => {
   Swal.fire({
     imageUrl: publicity[0].img,
     title: publicity[0].name,
     text: `precio: ${formatPrice(publicity[0].price)}`,
-    timer: 7000,
     backdrop: false,
     position: "bottom-end",
-    timerProgressBar: true,
     showDenyButton: false,
     showConfirmButton: true,
     showCancelButton: true,
     confirmButtonText: "agregar al carrito",
   }).then((result) => {
-    debugger;
     if (result.isConfirmed) {
       idBtn = publicity[0].id;
       let idBook = cart.find((book) => book.id == idBtn);
@@ -306,6 +325,5 @@ const publicityLastBookRemove = () => {
     }
   });
 };
-
 recoveryRemoveLocalStorage();
-publicityLastBookRemove();
+setTimeout(publicityLastBookRemove, 3000);

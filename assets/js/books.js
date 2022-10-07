@@ -1,5 +1,11 @@
-const books = [];
-const cart = []; //no es una contante por que de momento no se como eliminar un producto del carro. solo puedo filtrarlo.
+let books = [];
+const cart = [];
+
+const arrBooks = async () => {
+  const response = await fetch("../assets/js/books.json");
+  books = await response.json();
+};
+
 class book {
   constructor(
     nombre,
@@ -68,7 +74,7 @@ let book4 = new book(
   "assets/img/silence-lamb.jpg",
   "Thomas Harris",
   "Debolsillo",
-  8497599365,
+  "8497599365",
   "4"
 );
 
@@ -222,7 +228,7 @@ const bookArr = () => {
   );
 };
 
-bookArr();
+// bookArr();
 
 //ordenar precios
 
@@ -239,6 +245,7 @@ function higherPrice(arr) {
 }
 //
 const SearchBooks = (funcioncargar) => {
+  debugger;
   //Variables de inputs
   let optionType = document.querySelector(".typeBook").value;
   let nameBook = document.querySelector("#searchBooks").value.toLowerCase();

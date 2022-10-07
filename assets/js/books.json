@@ -1,0 +1,167 @@
+[
+    {
+        "name": "Emma",
+        "type": "Novela",
+        "price": 20000,
+        "availability": 20,
+        "img": "assets/img/emma.jpg",
+        "author": "Jane Austen",
+        "editorial": "Penguin Clasicos",
+        "isbn": "9788491050582",
+        "id": "1"
+    },
+    {
+        "name": "Mansfield Park",
+        "type": "Novela",
+        "price": 23500,
+        "availability": 12,
+        "img": "assets/img/mansfield-park.jpg",
+        "author": "Jane Austen",
+        "editorial": "Penguin Clasicos",
+        "isbn": "9788491051695",
+        "id": "2"
+    },
+    {
+        "name": "Persuasion",
+        "type": "Novela",
+        "price": 18990,
+        "availability": 5,
+        "img": "assets/img/persuasion.jpg",
+        "author": "Jane Austen",
+        "editorial": "Penguien Clasicos",
+        "isbn": "9788491052777",
+        "id": "3"
+    },
+    {
+        "name": "El silencio de los inocentes",
+        "type": "Thriller",
+        "price": 19990,
+        "availability": 3,
+        "img": "assets/img/silence-lamb.jpg",
+        "author": "Thomas Harris",
+        "editorial": "Debolsillo",
+        "isbn": "8497599365",
+        "id": "4"
+    },
+    {
+        "name": "Hannibal",
+        "type": "Thriller",
+        "price": 21590,
+        "availability": 6,
+        "img": "assets/img/hannibal.jpg",
+        "author": "Thomas Harris",
+        "editorial": "Debolsillo",
+        "isbn": "9788483465080",
+        "id": "5"
+    },
+    {
+        "name": "El zorro y la estrella",
+        "type": "Infantil",
+        "price": 24950,
+        "availability": 2,
+        "img": "assets/img/fox-star.jpg",
+        "author": "Bickford-Smith",
+        "editorial": "Nube de tinta",
+        "isbn": "9788416588183",
+        "id": "6"
+    },
+    {
+        "name": "wonder",
+        "type": "Infantil",
+        "price": 10990,
+        "availability": 13,
+        "img": "assets/img/wonder.jpg",
+        "author": "R.j. Palacios",
+        "editorial": "Nube de tinta",
+        "isbn": "9871997019",
+        "id": "7"
+    },
+    {
+        "name": "El Silmarillion",
+        "type": "Fantasia",
+        "price": 22990,
+        "availability": 21,
+        "img": "assets/img/silmarillion.jpg",
+        "author": "J.R.R Tolkien",
+        "editorial": "Booket",
+        "isbn": "9788445013984",
+        "id": "8"
+    },
+    {
+        "name": "EL hombre en busca de sentido",
+        "type": "Psicología",
+        "price": 15000,
+        "availability": 10,
+        "img": "assets/img/hombreSentido.jpg",
+        "author": "Viktor Frankl",
+        "editorial": "Herder",
+        "isbn": "9788425432026",
+        "id": "9"
+    },
+    {
+        "name": "El guardian entre el centeno",
+        "type": "Ficción",
+        "price": 20000,
+        "availability": 15,
+        "img": "assets/img/guardianCenteno.jpg",
+        "author": "Jerome D. Salinger",
+        "editorial": "Edhasa",
+        "isbn": "9788435008952",
+        "id": "10"
+    },
+    {
+        "name": "Corazón: Diario de un niño",
+        "type": "Novela",
+        "price": 20000,
+        "availability": 15,
+        "img": "assets/img/corazon.jpg",
+        "author": "Edmundo De Amicis",
+        "editorial": "Createspace",
+        "isbn": "9781519574640",
+        "id": "11"
+    },
+    {
+        "name": "Coaching para el éxito",
+        "type": "Autoayuda",
+        "price": 25000,
+        "availability": 8,
+        "img": "assets/img/coachExito.jpg",
+        "author": "Talane Miedaner",
+        "editorial": "Urano",
+        "isbn": "9788479534905",
+        "id": "12"
+    },
+    {
+        "name": "El principito",
+        "type": "Infantil",
+        "price": 15000,
+        "availability": 10,
+        "img": "assets/img/principito.jpg",
+        "author": "Talane Miedaner",
+        "editorial": "Salamandra",
+        "isbn": "9788418174193",
+        "id": "13"
+    },
+    {
+        "name": "La cruzada en Jeans",
+        "type": "Infantil",
+        "price": 20000,
+        "availability": 9,
+        "img": "assets/img/cruzadaJeans.jpg",
+        "author": "Thea Beckman",
+        "editorial": "Sm De ediciones",
+        "isbn": "9786072433540",
+        "id": "14"
+    },
+    {
+        "name": "Fundación y tierra",
+        "type": "Ciencia Ficción",
+        "price": 30000,
+        "availability": 5,
+        "img": "assets/img/fundacionTierra.jpg",
+        "author": "Isaac Asimov",
+        "editorial": "De Bolsillo",
+        "isbn": "9786073145015",
+        "id": "15"
+    }
+]

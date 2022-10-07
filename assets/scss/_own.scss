@@ -88,6 +88,9 @@ img{
     margin: 1em;
 }
 
+.visibility{
+    visibility: hidden;
+}
 //form 
  #searchBook{
 flex-wrap: wrap;
@@ -227,21 +230,65 @@ flex-wrap: wrap;
     display: none !important;
     }
     .swal2-container .swal2-popup{
-    width: auto;
-    padding: 1em;
+    width: 15em;
+    padding: 1.5em;
+
     .swal2-title{
-       font-size: 20px;
+       font-size: 14px;
        color:$secondary-color-light;
     }
     .swal2-confirm{
         background-color: color("lime", "lighten-1");
         font-weight: bold;
-        &:focus{
-            box-shadow: 0 0 5px 2px rgb(112 102 224 / 50%);
-        }
+        width: 100%;
+        // &:focus{
+        //     box-shadow: 0 0 5px 2px rgb(112 102 224 / 50%);
+        // }
     }
     .swal2-cancel{
         background-color: $primary-color-dark;
         font-weight: bold;
+        width: 100%;
+    }
+    .swal2-image{
+     margin: auto;
     }
 }
+////ups
+.ups{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background: color("teal","darken-2");
+    width: 90%;
+    height: 30%;
+    margin: auto;
+    margin-bottom: 5em;
+    padding: 1em;
+    img{
+        width: 30%;
+    }
+    span{
+        color: #fff;
+        font-weight: bold;
+        font-size: 4em;  
+    }
+    p{
+        color: #fff;
+
+    }
+}
+@media #{$medium-and-up}{
+    .ups{
+        width: 50%;
+
+        img{
+            width: 30%;
+        }
+        span{
+            font-size: 6em;  
+        }
+    }
+}
+/// 
