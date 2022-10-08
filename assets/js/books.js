@@ -2,7 +2,7 @@ let books = [];
 const cart = [];
 
 const arrBooks = async () => {
-  const response = await fetch("../assets/js/books.json");
+  const response = await fetch("assets/js/books.json");
   books = await response.json();
 };
 
