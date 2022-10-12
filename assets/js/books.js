@@ -295,3 +295,13 @@ const SearchBooks = (funcioncargar) => {
     funcioncargar(booksFound);
   }
 };
+
+let borrar = document.querySelector(".borrar");
+
+// const borrarContenido = () => {
+//   debugger;
+// };
+
+borrar.addEventListener("click", () => {
+  document.querySelector("#searchBooks").value = "";
+});
