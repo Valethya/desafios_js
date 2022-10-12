@@ -6485,15 +6485,15 @@ img {
   justify-content: center;
   align-items: center;
   flex-wrap: wrap; }
-  .books .holdBookCard {
+  .books .containerBook {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row; }
-    .books .holdBookCard .book {
+    .books .containerBook .book {
       width: calc(100% /2);
       padding: 0.5em;
       font-size: 12px; }
-      .books .holdBookCard .book img {
+      .books .containerBook .book img {
         height: 180px; }
   .books .card-content {
     height: 179px; }
@@ -6509,13 +6509,13 @@ img {
       overflow: hidden; }
 
 @media only screen and (min-width: 601px) {
-  .books .holdBookCard .book {
+  .books .containerBook .book {
     width: calc(100% / 3); }
-    .books .holdBookCard .book img {
+    .books .containerBook .book img {
       height: 280px; } }
 
 @media only screen and (min-width: 993px) {
-  .books .holdBookCard .book {
+  .books .containerBook .book {
     width: calc(100% / 4); } }
 
 .arrow {

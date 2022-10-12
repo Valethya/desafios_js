@@ -1,10 +1,18 @@
 let books = [];
 const cart = [];
 
-const arrBooks = async () => {
-  const response = await fetch("assets/js/books.json");
-  books = await response.json();
+const loadContent = async () => {
+  try {
+    const response = await fetch("assets/js/books.json");
+    books = await response.json();
+  } catch (error) {
+    noLoadBooks();
+  } finally {
+    removeClass(".visibility", "visibility");
+    loadBook(books);
+  }
 };
+loadContent();
 
 class book {
   constructor(

@@ -1,5 +1,6 @@
 ///variables html
-let container = document.querySelector(".holdBookCard");
+let container = document.querySelector(".containerBook");
+let collection = document.querySelector(".collection");
 
 // formateo de precios
 
@@ -19,32 +20,31 @@ listenerShowHidden("#remove", ".cart", "flex");
 //load books: load the books to the pages
 
 const loadBook = (books) => {
-  let element = document.querySelector(".book");
-  if (element) {
-    container.innerHTML = "";
-  }
-  books.forEach((book) => {
-    container.innerHTML += `
-    <div class="book">
-    <div class="card hoverable">
-      <div class="card-image">
-        <img src=${book.img}>
-    
-        <a class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook"
-            data-id=${book.id}>add</i></a>
+  container.innerHTML = books.map((book) => bookStore(book)).join("");
+};
+//////
+const bookStore = (books) => {
+  const { img, id, name, author, editorial, price } = books;
+  return `
+  <div class="book">
+  <div class="card hoverable">
+    <div class="card-image">
+      <img src=${img}>
+
+      <a class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook"
+          data-id=${id}>add</i></a>
+    </div>
+    <div class="card-content">
+      <div class="title-card">
+        <span class="card-title">${name}</span>
       </div>
-      <div class="card-content">
-        <div class="title-card">
-          <span class="card-title">${book.name}</span>
-        </div>
-        <p>${book.author}</p>
-        <p>${book.editorial}</p>
-        <p class="teal-text"><b>${formatPrice(book.price)}</b></p>
-      </div>
+      <p>${author}</p>
+      <p>${editorial}</p>
+      <p class="teal-text"><b>${formatPrice(price)}</b></p>
     </div>
   </div>
-  `;
-  });
+</div>
+`;
 };
 ///no cargan los productos
 const noLoadBooks = () => {
@@ -56,19 +56,6 @@ const noLoadBooks = () => {
 </div>
 `;
 };
-////
-
-const loadContent = async () => {
-  try {
-    await arrBooks();
-    removeClass(".visibility", "visibility");
-    loadBook(books);
-  } catch (error) {
-    noLoadBooks();
-  }
-};
-loadContent();
-
 ///search book
 
 const formBook = document.querySelector("#searchBook");
@@ -89,41 +76,29 @@ formBook.addEventListener("keyup", (e) => {
 
 ///agregar producto
 
-const addBookCart = (cart) => {
-  let holdAddBook = document.querySelector(".collection");
-  let bookAdded = document.querySelector(".book-added");
-  if (bookAdded) {
-    holdAddBook.innerHTML = "";
-  }
-  createBookInCart(cart, holdAddBook);
+const addBookCart = () => {
+  collection.innerHTML = cart.map((book) => createBookInCart(book)).join("");
 };
 
 //crea el html del libro
-
-const createBookInCart = (cart, holdAddBook) => {
-  cart.forEach((book) => {
-    holdAddBook.innerHTML += `
+const createBookInCart = (cart) => {
+  const { img, id, name, quantity, price } = cart;
+  return `
     <div class="collection-item avatar book-added">
-  <img src=${book.img} class="circle">
-  <span class="title teal-text"><b>${book.name}</b></span>
-  <p>Cantidad: ${book.quantity}<br>
-    Precio: ${formatPrice(book.price)}<br>
-    total:<b>${formatPrice(book.price * book.quantity)}</b>
+  <img src=${img} class="circle">
+  <span class="title teal-text"><b>${name}</b></span>
+  <p>Cantidad: ${quantity}<br>
+    Precio: ${formatPrice(price)}<br>
+    total:<b>${formatPrice(price * quantity)}</b>
   </p>
   <a href="#!" class="secondary-content "><i class="material-icons delete-book "
-      data-id=${book.id}>delete_outline</i></a>
+      data-id=${id}>delete_outline</i></a>
 </div>
 `;
-  });
 };
 
-/// agregar libro al carrito
-
-let holdBookCard = document.querySelector(".holdBookCard");
-
 //escuchando evento para agregar libro
-
-holdBookCard.addEventListener("click", addBook);
+container.addEventListener("click", addBook);
 
 //si el libro ya esta en el array cart solo se suman mas a la cantidad
 
@@ -137,14 +112,12 @@ const sumQuantityOfBooks = (idBook) => {
 
 const addBookArrayCart = (idBtn) => {
   let book = books.find((book) => book.id == idBtn);
-  if (book) {
-    let cartBook = {
-      ...book,
-      quantity: 1,
-    };
+  let cartBook = {
+    ...book,
+    quantity: 1,
+  };
 
-    cart.push(cartBook);
-  }
+  cart.push(cartBook);
 };
 
 //escucha de btns para agregar libro al carrito
@@ -169,7 +142,7 @@ const totalbook = () => {
   const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
   return sum;
 };
-
+////
 //precio total del carrito
 
 const finalPriceCart = () => {
@@ -182,15 +155,11 @@ const finalPriceCart = () => {
 // agregar al html el valor total del carrito
 
 const addfinalpriceCart = () => {
-  let container = document.querySelector(".collection");
-  let div = document.createElement("li");
-  div.setAttribute("class", "collection-item bottom total-price");
-  div.innerHTML = `
-        <span class="title">TOTAL</span>
-        <p class="total teal-text">
-        ${formatPrice(finalPriceCart())}
-          </p>  `;
-  container.appendChild(div);
+  collection.innerHTML += `<li class="collection-item bottom total-price">
+  <span class="title">TOTAL</span>
+  <p class="total teal-text">
+  ${formatPrice(finalPriceCart())}
+    </p>  `;
 };
 
 // agregar counter al icono de carrito
@@ -222,8 +191,6 @@ const changeCounter = () => {
 
 //eliminar libro del carrito
 
-let collection = document.querySelector(".collection");
-
 collection.addEventListener("click", deleteBook);
 
 //eliminar cantidad de libros o el libro mismo del carrito
@@ -235,6 +202,7 @@ function deleteBook(e) {
     console.log(idBook);
     idBook = cart.find((book) => book.id == idBook);
   }
+  debugger;
   saveInLocalStorage("remove", idBook);
   if (idBook.quantity === 1) {
     let book = cart.find((book) => book.id == idBook.id);
@@ -253,15 +221,14 @@ function deleteBook(e) {
 
 const deleteLastBook = () => {
   if (collection.children.length == 1) {
-    let holdAddBook = document.querySelector(".collection");
     let div = document.createElement("li");
     div.setAttribute("class", "collection-item avatar book-added");
     div.innerHTML = `
         <img class="cricket"src="assets/img/grillo.png"><img>
       <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
     `;
-    holdAddBook.innerHTML = "";
-    holdAddBook.appendChild(div);
+    collection.innerHTML = "";
+    collection.appendChild(div);
     showHidden(".cart", "flex");
   }
   saveInLocalStorage("cart", cart);

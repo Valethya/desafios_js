@@ -107,7 +107,7 @@ flex-wrap: wrap;
     justify-content: center;
     align-items: center;
     flex-wrap: wrap;
-    .holdBookCard{
+    .containerBook{
         display: flex;
         flex-wrap: wrap;
         flex-direction: row;
@@ -139,7 +139,7 @@ flex-wrap: wrap;
 }
 @media #{$medium-and-up} {
     .books{
-        .holdBookCard{
+        .containerBook{
             .book {
             width: calc(100% / 3);
             img{
@@ -152,7 +152,7 @@ flex-wrap: wrap;
     }
 @media #{$large-and-up} {
     .books{
-        .holdBookCard{
+        .containerBook{
             .book {
                 width: calc(100% / 4);
         }}
