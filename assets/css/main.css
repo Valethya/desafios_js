@@ -6556,6 +6556,11 @@ img {
     .cart .collection .collection-item .total {
       font-size: 120%;
       font-weight: bold; }
+    .cart .collection .buy {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center; }
 
 @media only screen and (min-width: 601px) {
   .cart {

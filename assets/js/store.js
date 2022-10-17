@@ -20,17 +20,16 @@ listenerShowHidden("#remove", ".cart", "flex");
 //load books: load the books to the pages
 
 const loadBook = (books) => {
-  container.innerHTML = books.map((book) => bookStore(book)).join("");
+  container.innerHTML = books.map((book) => bookCardStore(book)).join("");
 };
 //////
-const bookStore = (books) => {
+const bookCardStore = (books) => {
   const { img, id, name, author, editorial, price } = books;
   return `
   <div class="book">
   <div class="card hoverable">
     <div class="card-image">
       <img src=${img}>
-
       <a class="btn-floating halfway-fab waves-effect waves-light lime lighten-1"><i class="material-icons addBook"
           data-id=${id}>add</i></a>
     </div>
@@ -74,12 +73,6 @@ formBook.addEventListener("keyup", (e) => {
 
 ///carrito de compras
 
-///agregar producto
-
-const addBookCart = () => {
-  collection.innerHTML = cart.map((book) => createBookInCart(book)).join("");
-};
-
 //crea el html del libro
 const createBookInCart = (cart) => {
   const { img, id, name, quantity, price } = cart;
@@ -97,8 +90,11 @@ const createBookInCart = (cart) => {
 `;
 };
 
-//escuchando evento para agregar libro
-container.addEventListener("click", addBook);
+///agregar producto
+
+const addBookCart = () => {
+  collection.innerHTML = cart.map((book) => createBookInCart(book)).join("");
+};
 
 //si el libro ya esta en el array cart solo se suman mas a la cantidad
 
@@ -136,46 +132,37 @@ function addBook(e) {
   }
 }
 
+//escuchando evento para agregar libro
+container.addEventListener("click", addBook);
+
 ///suma total de productos del carrito
 
 const totalbook = () => {
-  const sum = cart.map((book) => book.quantity).reduce((a, b) => a + b, 0);
+  const sum = cart.reduce((acc, book) => acc + book.quantity, 0);
   return sum;
 };
 ////
 //precio total del carrito
 
 const finalPriceCart = () => {
-  const finalPrice = cart
-    .map((book) => book.price * book.quantity)
-    .reduce((a, b) => a + b, 0);
+  const finalPrice = cart.reduce(
+    (acc, book) => acc + book.price * book.quantity,
+    0
+  );
   return finalPrice;
 };
 
 // agregar al html el valor total del carrito
 
 const addfinalpriceCart = () => {
-  collection.innerHTML += `<li class="collection-item bottom total-price">
+  collection.innerHTML += `<li class="collection-item buy bottom total-price">
   <span class="title">TOTAL</span>
   <p class="total teal-text">
   ${formatPrice(finalPriceCart())}
-    </p>  `;
-};
-
-// agregar counter al icono de carrito
-
-const addCounter = () => {
-  let linkbad = document.querySelector("#cart");
-  let counter = document.querySelector(".mi-counter");
-  if (!counter) {
-    let sup = document.createElement("sup");
-    sup.setAttribute("class", "red center mi-counter flex");
-    sup.innerHTML = `
-            <p class="white-text"><b class="counter">${totalbook()}</b></p>
-                  `;
-    linkbad.insertAdjacentElement("beforeend", sup);
-  }
-  changeCounter();
+    </p>
+    <button type="button" class="btn buy margin col s2 m2">
+    Comprar
+  </button> `;
 };
 
 // cambiar el contador del counter o eliminar si el contador llega a 0
@@ -189,6 +176,22 @@ const changeCounter = () => {
     : (counter.innerText = `${totalbook()}`);
 };
 
+// agregar counter al icono de carrito
+
+const addCounter = () => {
+  let cart = document.querySelector("#cart");
+  let counter = document.querySelector(".mi-counter");
+  if (!counter) {
+    let sup = document.createElement("sup");
+    sup.setAttribute("class", "red center mi-counter flex");
+    sup.innerHTML = `
+            <p class="white-text"><b class="counter">${totalbook()}</b></p>
+                  `;
+    cart.insertAdjacentElement("beforeend", sup);
+  }
+  changeCounter();
+};
+
 //eliminar libro del carrito
 
 collection.addEventListener("click", deleteBook);
@@ -196,13 +199,9 @@ collection.addEventListener("click", deleteBook);
 //eliminar cantidad de libros o el libro mismo del carrito
 
 function deleteBook(e) {
-  let idBook;
-  if (e.target.classList.contains("delete-book")) {
-    idBook = e.target.getAttribute("data-id");
-    console.log(idBook);
-    idBook = cart.find((book) => book.id == idBook);
-  }
   debugger;
+  let idBook = e.target.getAttribute("data-id");
+  idBook = cart.find((book) => book.id == idBook);
   saveInLocalStorage("remove", idBook);
   if (idBook.quantity === 1) {
     let book = cart.find((book) => book.id == idBook.id);
@@ -216,19 +215,47 @@ function deleteBook(e) {
   addfinalpriceCart();
   deleteLastBook();
 }
+////alert compra exitosa
+const successfulPurhcase = () => {
+  Swal.fire({
+    title: "Tu compra ha sido Exitosa!",
+    text: `ok para continuar`,
+  });
+};
 
-//eliminar ultimo libro del carrito
+////
+collection.addEventListener("click", buy);
+///
+function buy(e) {
+  debugger;
+  if (e.target.classList.contains("buy")) {
+    let length = cart.length;
+    cart.splice(0, length);
 
+    addBookCart(cart);
+    changeCounter();
+    successfulPurhcase();
+    emptyCart();
+    saveInLocalStorage("cart", cart);
+    showHidden(".cart", "flex");
+  }
+}
+
+/////carrito vacio
+const emptyCart = () => {
+  let div = document.createElement("li");
+  div.setAttribute("class", "collection-item avatar book-added");
+  div.innerHTML = `
+      <img class="cricket"src="assets/img/grillo.png"><img>
+    <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
+  `;
+  collection.innerHTML = "";
+  collection.appendChild(div);
+};
+/////eliminar ultimo libro del carrito
 const deleteLastBook = () => {
   if (collection.children.length == 1) {
-    let div = document.createElement("li");
-    div.setAttribute("class", "collection-item avatar book-added");
-    div.innerHTML = `
-        <img class="cricket"src="assets/img/grillo.png"><img>
-      <p class="text-accent-3 teal-text"><b>Aquí no hay nada!</b></p>
-    `;
-    collection.innerHTML = "";
-    collection.appendChild(div);
+    emptyCart();
     showHidden(".cart", "flex");
   }
   saveInLocalStorage("cart", cart);
